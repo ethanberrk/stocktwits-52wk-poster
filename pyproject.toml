@@ -1,0 +1,9 @@
+[project]
+name = "stocktwits-52wk-poster"
+version = "0.1.0"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+addopts = "-m 'not contract'"
+markers = ["contract: live external-API tests, run manually only"]

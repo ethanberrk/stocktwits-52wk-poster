@@ -1,0 +1,20 @@
+"""All knobs in one place. Nothing else defines numbers or thresholds."""
+import re
+
+MIN_MARKET_CAP = 1_000_000_000          # USD floor
+MAX_PER_TICK = 2                        # posts per 30-min tick
+MAX_PER_DAY = 20                        # posts per trading day
+MAX_PLAUSIBLE_HIGHS = 500               # validation gate: more = broken source
+
+MARKET_TZ = "America/New_York"
+MARKET_OPEN = (9, 30)                   # ET
+MARKET_CLOSE = (16, 0)                  # ET
+
+CHART_IMG_URL = "https://api.chart-img.com/v1/tradingview/advanced-chart"
+
+# Drop non-common-equity by name (same rule the WSJ prototype proved out)
+NAME_EXCLUDE_RE = re.compile(
+    r"\b(ETF|Fund|Pfd|Preferred|Notes?|Units?|Warrants?|Wt|Bond|Rt|Rights)\b"
+    r"|Acquisition Corp",
+    re.I,
+)
