@@ -6,7 +6,7 @@
 
 ## Purpose
 
-An automated account posts timely, curated 52-week-high calls to Stocktwits throughout the trading day: when a US stock hits a new 52-week high intraday, the system posts a 1-year chart image with a `$TICKER` cashtag and a short blurb. Posts trickle out as highs occur (never a batch dump), capped per day, and never repost the same name on consecutive trading days.
+An automated account posts timely, curated 52-week-high calls to Stocktwits throughout the trading day: any US stock on **today's 52-week-high list** (hit a new high at some point today — it need not be breaking out at post time) is a candidate, and the system posts a 1-year chart image with a `$TICKER` cashtag and a short blurb. Posts trickle out across the day (never a batch dump), capped per day, and never repost the same name on consecutive trading days.
 
 ## Decisions made (and why)
 
@@ -27,7 +27,7 @@ One Python package. One GitHub Actions workflow ("tick") runs **every 30 minutes
 
 ### Per-tick data flow
 
-1. **Source** — fetch US equities currently at new 52-week highs (today's high ≥ trailing 52-week high) via the `HighsSource` interface. v1: yfinance.
+1. **Source** — fetch US equities on **today's 52-week-high list** via the `HighsSource` interface. v1: yfinance. Eligibility is day-cumulative, not moment-of-post: a stock qualifies if its intraday high today ≥ its prior 52-week high, even if it has since pulled back. A name that broke out at 10am remains postable at 2pm.
 2. **Select** — filter: common stock only (no ETFs/funds/preferreds/units), market cap > $1B, not blocked by the cooldown rule. Rank survivors by market cap descending.
 3. **Throttle** — post at most **2 per tick** and **20 per day** (config). 13 ticks × 2 = 26 slots, so the daily cap binds on heavy days; the trickle is structural.
 4. **Chart** — fetch a 1-year chart PNG for each winner from chart-img.
