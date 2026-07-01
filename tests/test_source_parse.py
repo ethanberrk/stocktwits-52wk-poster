@@ -1,0 +1,40 @@
+from src.source.base import Candidate
+from src.source.yfinance_source import _row_to_candidate
+
+def row(**over):
+    base = {
+        "symbol": "AAPL", "shortName": "Apple Inc.", "exchange": "NMS",
+        "quoteType": "EQUITY", "regularMarketPrice": 250.0,
+        "regularMarketChangePercent": 1.8, "regularMarketDayHigh": 252.0,
+        "fiftyTwoWeekHigh": 252.0, "marketCap": 3.9e12,
+    }
+    base.update(over)
+    return base
+
+def test_new_high_row_parses():
+    c = _row_to_candidate(row())
+    assert c == Candidate("AAPL", "Apple Inc.", "NASDAQ", 250.0, 1.8,
+                          3.9e12, 252.0, "EQUITY")
+
+def test_not_at_high_is_dropped():
+    assert _row_to_candidate(row(regularMarketDayHigh=240.0)) is None
+
+def test_day_cumulative_high_kept_even_after_pullback():
+    # broke out earlier today (day high == 52wk high), pulled back to 245
+    assert _row_to_candidate(row(regularMarketPrice=245.0)) is not None
+
+def test_non_equity_dropped():
+    assert _row_to_candidate(row(quoteType="ETF")) is None
+
+def test_excluded_name_dropped():
+    assert _row_to_candidate(row(shortName="Foo Acquisition Corp")) is None
+
+def test_missing_field_dropped():
+    assert _row_to_candidate(row(marketCap=None)) is None
+    r = row(); del r["fiftyTwoWeekHigh"]
+    assert _row_to_candidate(r) is None
+
+def test_exchange_mapping():
+    assert _row_to_candidate(row(exchange="NYQ")).exchange == "NYSE"
+    assert _row_to_candidate(row(exchange="ASE")).exchange == "AMEX"
+    assert _row_to_candidate(row(exchange="???")).exchange == ""

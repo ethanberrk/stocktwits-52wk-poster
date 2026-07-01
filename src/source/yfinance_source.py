@@ -1,0 +1,31 @@
+import config
+from src.source.base import Candidate
+
+# Yahoo exchange codes -> TradingView prefixes chart-img understands
+_EXCHANGES = {"NMS": "NASDAQ", "NGM": "NASDAQ", "NCM": "NASDAQ",
+              "NYQ": "NYSE", "ASE": "AMEX"}
+_REQUIRED = ("symbol", "regularMarketPrice", "regularMarketDayHigh",
+             "fiftyTwoWeekHigh", "marketCap")
+
+def _row_to_candidate(row: dict) -> Candidate | None:
+    if any(row.get(k) is None for k in _REQUIRED):
+        return None
+    if row.get("quoteType") != "EQUITY":
+        return None
+    name = row.get("longName") or row.get("shortName") or ""
+    if not name or config.NAME_EXCLUDE_RE.search(name):
+        return None
+    # Day-cumulative 52wk-high test: today's high touched the 52wk high.
+    # Yahoo's fiftyTwoWeekHigh already includes today, so equality == new high.
+    if row["regularMarketDayHigh"] + 1e-6 < row["fiftyTwoWeekHigh"]:
+        return None
+    return Candidate(
+        ticker=row["symbol"],
+        name=name,
+        exchange=_EXCHANGES.get(row.get("exchange"), ""),
+        price=float(row["regularMarketPrice"]),
+        pct_change_today=float(row.get("regularMarketChangePercent") or 0.0),
+        market_cap=float(row["marketCap"]),
+        week52_high=float(row["fiftyTwoWeekHigh"]),
+        security_type=row["quoteType"],
+    )
