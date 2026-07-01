@@ -1,5 +1,6 @@
 import config
-from src.source.base import Candidate
+from src.source.base import Candidate, HighsSource, SourceError
+import yfinance as yf
 
 # Yahoo exchange codes -> TradingView prefixes chart-img understands
 _EXCHANGES = {"NMS": "NASDAQ", "NGM": "NASDAQ", "NCM": "NASDAQ",
@@ -29,3 +30,31 @@ def _row_to_candidate(row: dict) -> Candidate | None:
         week52_high=float(row["fiftyTwoWeekHigh"]),
         security_type=row["quoteType"],
     )
+
+_PAGE = 250
+_MAX_OFFSET = 3000  # safety backstop; ~2-3k US names clear the $1B floor
+
+class YFinanceSource(HighsSource):
+    """Screen US equities >$1B by mcap desc, keep rows on today's 52wk-high list."""
+
+    def _screen_rows(self) -> list[dict]:
+        q = yf.EquityQuery("and", [
+            yf.EquityQuery("eq", ["region", "us"]),
+            yf.EquityQuery("gt", ["intradaymarketcap", config.MIN_MARKET_CAP]),
+        ])
+        rows, offset = [], 0
+        while offset < _MAX_OFFSET:
+            resp = yf.screen(q, offset=offset, size=_PAGE,
+                             sortField="intradaymarketcap", sortAsc=False)
+            quotes = (resp or {}).get("quotes", [])
+            rows.extend(quotes)
+            if len(quotes) < _PAGE:
+                break
+            offset += _PAGE
+        return rows
+
+    def fetch_candidates(self) -> list:
+        rows = self._screen_rows()
+        if not rows:
+            raise SourceError("Yahoo screen returned zero quotes; feed looks broken")
+        return [c for c in (_row_to_candidate(r) for r in rows) if c is not None]
