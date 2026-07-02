@@ -1,3 +1,6 @@
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
+
 import config
 from src.source.base import Candidate, HighsSource, SourceError
 import yfinance as yf
@@ -6,15 +9,23 @@ import yfinance as yf
 _EXCHANGES = {"NMS": "NASDAQ", "NGM": "NASDAQ", "NCM": "NASDAQ",
               "NYQ": "NYSE", "ASE": "AMEX"}
 _REQUIRED = ("symbol", "regularMarketPrice", "regularMarketDayHigh",
-             "fiftyTwoWeekHigh", "marketCap")
+             "fiftyTwoWeekHigh", "marketCap", "regularMarketTime")
 
-def _row_to_candidate(row: dict) -> Candidate | None:
+def _row_to_candidate(row: dict, today: date) -> Candidate | None:
     if any(row.get(k) is None for k in _REQUIRED):
         return None
     if row.get("quoteType") != "EQUITY":
         return None
     name = row.get("longName") or row.get("shortName") or ""
     if not name or config.NAME_EXCLUDE_RE.search(name):
+        return None
+    # Freshness gate: the quote must have traded TODAY (ET). On market
+    # holidays every quote still carries the previous session's timestamp,
+    # so this makes stale "new high today" posts structurally impossible —
+    # no holiday calendar needed, and unscheduled closures are covered too.
+    traded = datetime.fromtimestamp(
+        row["regularMarketTime"], ZoneInfo(config.MARKET_TZ)).date()
+    if traded != today:
         return None
     # Day-cumulative 52wk-high test: today's high touched the 52wk high.
     # Yahoo's fiftyTwoWeekHigh already includes today, so equality == new high.
@@ -57,4 +68,5 @@ class YFinanceSource(HighsSource):
         rows = self._screen_rows()
         if not rows:
             raise SourceError("Yahoo screen returned zero quotes; feed looks broken")
-        return [c for c in (_row_to_candidate(r) for r in rows) if c is not None]
+        today = datetime.now(ZoneInfo(config.MARKET_TZ)).date()
+        return [c for c in (_row_to_candidate(r, today) for r in rows) if c is not None]

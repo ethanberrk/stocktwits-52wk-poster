@@ -27,7 +27,7 @@ One Python package. One GitHub Actions workflow ("tick") runs **every 30 minutes
 
 ### Per-tick data flow
 
-1. **Source** — fetch US equities on **today's 52-week-high list** via the `HighsSource` interface. v1: yfinance. Eligibility is day-cumulative, not moment-of-post: a stock qualifies if its intraday high today ≥ its prior 52-week high, even if it has since pulled back. A name that broke out at 10am remains postable at 2pm.
+1. **Source** — fetch US equities on **today's 52-week-high list** via the `HighsSource` interface. v1: yfinance. Eligibility is day-cumulative, not moment-of-post: a stock qualifies if its intraday high today ≥ its prior 52-week high, even if it has since pulled back. A name that broke out at 10am remains postable at 2pm. **Freshness gate (added 2026-07-02):** a quote must have last traded on today's ET date (`regularMarketTime`); this makes market-holiday and stale-quote posts structurally impossible without a holiday calendar, and covers unscheduled closures. Live side effect: it also drops thinly-traded OTC/pink-sheet lines whose quotes are days old.
 2. **Select** — filter: common stock only (no ETFs/funds/preferreds/units), market cap > $1B, not blocked by the cooldown rule. Rank survivors by market cap descending.
 3. **Throttle** — post at most **2 per tick** and **20 per day** (config). 13 ticks × 2 = 26 slots, so the daily cap binds on heavy days; the trickle is structural.
 4. **Chart** — fetch a 1-year chart PNG for each winner from chart-img.
@@ -98,7 +98,7 @@ stocktwits-52wk-poster/
 
 - **FMP source swap** — move off yfinance when it breaks or the project proves out; FMP Starter ~$22/mo, endpoints already researched (screener + batch quotes with `yearHigh`).
 - **Smarter selection** — replace largest-market-cap with a refined heuristic (candidates discussed: fewest Stocktwits watchers "relative strength" thesis, % gain, engagement-informed).
-- **Market-holiday calendar — REQUIRED BEFORE PHASE 2 GOES LIVE.** On a full-holiday weekday the market-hours gate passes and Yahoo still carries the prior session's `regularMarketDayHigh`, so unposted names from the previous session's high list would be posted with stale prices and a factually wrong "today." Harmless during Phase 1 dry-run; a content-quality bug once real posting is on. Minimal fix: hardcoded NYSE holiday set in `config.py`; proper fix: `pandas-market-calendars`.
+- ~~Market-holiday calendar~~ **RESOLVED 2026-07-02** by the quote-timestamp freshness gate in the source (see Per-tick data flow, step 1): on holidays every quote carries the prior session's timestamp, so zero candidates survive and the tick is quiet. No calendar dependency needed.
 - **Data-display licensing** — all individual-tier data providers formally restrict public display; chart-img shifts chart licensing to the chart service. Revisit if the account becomes commercial (FMP sells display licensing as an upgrade).
 - **Engagement feedback loop** — use Stocktwits post metrics to tune selection.
 
