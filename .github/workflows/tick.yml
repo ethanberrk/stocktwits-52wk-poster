@@ -26,6 +26,7 @@ jobs:
       - name: Run tick
         env:
           CHART_IMG_API_KEY: ${{ secrets.CHART_IMG_API_KEY }}
+          PYTHONUNBUFFERED: "1"
         run: python run.py --sync-state
       - name: Commit state + output
         # always(): if the tick crashed mid-posting, the pending/confirmed
