@@ -8,7 +8,7 @@ CAND = Candidate("AAPL", "Apple Inc.", "NASDAQ", 251.37, 1.84,
 
 def test_compose_is_cashtag_plus_fixed_phrase():
     # Deliberately no price/%chg/mcap: they'd be stale by read time.
-    assert compose_post_text(CAND) == "$AAPL printed new 52-week high today"
+    assert compose_post_text(CAND) == "$AAPL printed a new 52-week high today"
 
 def test_dryrun_writes_png_and_txt(tmp_path):
     pub = DryRunPublisher(tmp_path, date(2026, 7, 1))
