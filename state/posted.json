@@ -19,6 +19,18 @@
       "ticker": "GE",
       "date": "2026-07-02",
       "post_id": null
+    },
+    {
+      "ticker": "UNH",
+      "date": "2026-07-02",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "HSBC",
+      "date": "2026-07-02",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
