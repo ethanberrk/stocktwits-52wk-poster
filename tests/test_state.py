@@ -30,6 +30,26 @@ def test_daily_count_counts_only_today():
     assert state.daily_count(posted, date(2026, 7, 1)) == 2
 
 
+def test_pending_writeahead_blocks_and_marks_posted(tmp_path):
+    # at-most-once: intent is recorded (pending) before an irreversible
+    # post, blocks like a real post, and is confirmed afterwards
+    p = tmp_path / "posted.json"
+    state.append_posted(p, "V", date(2026, 7, 2), None, status="pending")
+    got = state.load_posted(p)
+    assert got[0]["status"] == "pending" and got[0]["post_id"] is None
+    assert state.is_blocked("V", got, date(2026, 7, 2))
+    assert state.daily_count(got, date(2026, 7, 2)) == 1
+
+    state.mark_posted(p, "V", date(2026, 7, 2), "98765")
+    got = state.load_posted(p)
+    assert got[0]["status"] == "posted" and got[0]["post_id"] == "98765"
+
+
+def test_legacy_entries_without_status_still_block():
+    posted = [{"ticker": "V", "date": "2026-07-01", "post_id": None}]
+    assert state.is_blocked("V", posted, date(2026, 7, 2))
+
+
 def test_posted_log_roundtrip(tmp_path):
     p = tmp_path / "state" / "posted.json"
     assert state.load_posted(p) == []

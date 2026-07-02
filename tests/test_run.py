@@ -30,7 +30,46 @@ def test_tick_posts_top_candidates_and_records_state(tmp_path):
     assert got == ["BIG", "MID"]                      # 2-per-tick cap, mcap order
     assert pub.calls[0][0] == "BIG"
     assert pub.calls[0][1].startswith("$BIG ")
-    assert [e["ticker"] for e in state.load_posted(sp)] == ["BIG", "MID"]
+    posted = state.load_posted(sp)
+    assert [e["ticker"] for e in posted] == ["BIG", "MID"]
+    assert all(e["status"] == "posted" for e in posted)   # confirmed after posting
+
+def test_symbol_check_failure_skips_candidate(tmp_path):
+    pub = SpyPublisher()
+    got = run.tick(FakeSource([cand("BIG", 9e9), cand("MID", 5e9)]),
+                   pub, lambda c: b"PNG", tmp_path / "p.json", NOW,
+                   symbol_check=lambda c: c.ticker != "BIG")
+    assert got == ["MID"]                 # BIG skipped before chart/publish
+    assert [e["ticker"] for e in state.load_posted(tmp_path / "p.json")] == ["MID"]
+
+def test_publisher_crash_leaves_pending_writeahead(tmp_path):
+    # crash after intents are recorded: nothing double-posts next tick
+    sp = tmp_path / "posted.json"
+    class ExplodingPublisher(Publisher):
+        def post(self, candidate, text, image_png):
+            raise RuntimeError("stocktwits 500")
+    with pytest.raises(RuntimeError):
+        run.tick(FakeSource([cand("BIG", 9e9), cand("MID", 5e9)]),
+                 ExplodingPublisher(), lambda c: b"PNG", sp, NOW)
+    posted = state.load_posted(sp)
+    assert [(e["ticker"], e["status"]) for e in posted] == [
+        ("BIG", "pending"), ("MID", "pending")]
+    # both are blocked from a repost attempt on the very next tick
+    assert state.is_blocked("BIG", posted, TODAY)
+    assert state.is_blocked("MID", posted, TODAY)
+
+def test_state_sync_runs_after_writeahead_before_posting(tmp_path):
+    events = []
+    class OrderedPublisher(Publisher):
+        def post(self, candidate, text, image_png):
+            events.append(f"post:{candidate.ticker}")
+            return PostResult(post_id=None, dry_run=True)
+    def sync():
+        posted = state.load_posted(tmp_path / "p.json")
+        events.append(f"sync:{[e['status'] for e in posted]}")
+    run.tick(FakeSource([cand("BIG", 9e9)]), OrderedPublisher(),
+             lambda c: b"PNG", tmp_path / "p.json", NOW, state_sync=sync)
+    assert events == ["sync:['pending']", "post:BIG"]   # intent pushed first
 
 def test_tick_outside_market_hours_is_noop(tmp_path):
     closed = datetime(2026, 7, 1, 22, 0, tzinfo=timezone.utc)  # 18:00 ET

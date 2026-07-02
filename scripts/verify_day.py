@@ -32,6 +32,7 @@ sys.path.insert(0, str(ROOT))
 
 import config                      # noqa: E402
 from src import state              # noqa: E402
+from src.stocktwits import st_symbol  # noqa: E402
 
 TRUTH_TOLERANCE = 0.001            # 0.1%: feed rounding between Yahoo endpoints
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
@@ -139,6 +140,12 @@ def check_artifacts(posted: list[dict], d: date) -> None:
     files.discard(".gitkeep")
     for e in entries:
         t = e["ticker"]
+        if e.get("status", "posted") == "pending":
+            report("WARN", "artifacts",
+                   f"{t} {d}: write-ahead entry never confirmed (crash between "
+                   "intent and post?) — verify manually whether it went out")
+            files.discard(f"{t}.png"); files.discard(f"{t}.txt")
+            continue
         png, txt = day_dir / f"{t}.png", day_dir / f"{t}.txt"
         if not png.is_file() or png.read_bytes()[:8] != PNG_MAGIC:
             report("FAIL", "artifacts", f"{t} {d}: missing/invalid PNG")
@@ -152,7 +159,7 @@ def check_artifacts(posted: list[dict], d: date) -> None:
             report("FAIL", "artifacts", f"{t} {d}: missing .txt")
         else:
             text = txt.read_text(encoding="utf-8")
-            if text.startswith(f"${t} ") and "52-week high" in text:
+            if text.startswith(f"${st_symbol(t)} ") and "52-week high" in text:
                 report("PASS", "artifacts", f"{t} {d}: copy ok: {text!r}")
             else:
                 report("FAIL", "artifacts", f"{t} {d}: unexpected copy: {text!r}")

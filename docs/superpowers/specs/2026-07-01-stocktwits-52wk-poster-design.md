@@ -79,7 +79,8 @@ stocktwits-52wk-poster/
 
 - **Source failure / rate limit** (yfinance's known mode): log, exit nonzero → GitHub emails on workflow failure. A missed tick is harmless; still-standing highs surface next tick.
 - **Chart failure for one ticker:** skip it this tick (stays eligible), continue down the ranked list.
-- **Post succeeded, state-push failed** — the one double-post risk. Write state before pushing; pull-rebase-push; the consecutive-day rule catches most residual dupes.
+- **Double-post races — closed 2026-07-02 with write-ahead state (at-most-once).** Before anything irreversible, each pick is recorded as a `pending` entry and (in CI, via `--sync-state`) committed+pushed; only after a successful post is it confirmed to `posted` with the post id. The workflow's commit step runs `if: always()` so a mid-run crash still persists state. Pending entries block the cooldown exactly like posted ones, so every failure mode (crash between post and record, state-push race, partial tick) can only *lose* a post, never duplicate one. The auditor WARNs on any never-confirmed pending entry.
+- **Cashtag validation (added 2026-07-02):** copy uses Stocktwits symbology (`st_symbol`: Yahoo `BRK-B` → `$BRK.B`), and each pick is checked against Stocktwits' public symbol endpoint before posting. Definitive 404 → skip; indeterminate errors (CDN bot-walls on datacenter IPs, timeouts) → allow-with-log, since an unlinked cashtag is cheaper than silencing all posts. Note: the endpoint bot-blocks the `requests` library's TLS fingerprint; `urllib` passes (verified live).
 - **Validation gate before any posting:** abort the tick if source output looks broken (empty fields across the board, implausible count like thousands of "highs").
 
 ## Testing

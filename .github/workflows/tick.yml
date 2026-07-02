@@ -26,8 +26,11 @@ jobs:
       - name: Run tick
         env:
           CHART_IMG_API_KEY: ${{ secrets.CHART_IMG_API_KEY }}
-        run: python run.py
+        run: python run.py --sync-state
       - name: Commit state + output
+        # always(): if the tick crashed mid-posting, the pending/confirmed
+        # state on disk must still be persisted so nothing double-posts
+        if: always()
         run: |
           git config user.name "52wk-poster-bot"
           git config user.email "actions@users.noreply.github.com"

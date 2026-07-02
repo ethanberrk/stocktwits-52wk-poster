@@ -11,6 +11,8 @@ MARKET_OPEN = (9, 30)                   # ET
 MARKET_CLOSE = (16, 0)                  # ET
 
 CHART_IMG_URL = "https://api.chart-img.com/v1/tradingview/advanced-chart"
+# public, unauthenticated; used to validate a cashtag resolves before posting
+STOCKTWITS_SYMBOL_URL = "https://api.stocktwits.com/api/2/streams/symbol/{symbol}.json"
 
 # Drop non-common-equity by name (same rule the WSJ prototype proved out)
 NAME_EXCLUDE_RE = re.compile(

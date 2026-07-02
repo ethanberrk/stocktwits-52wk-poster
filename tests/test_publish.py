@@ -10,6 +10,13 @@ def test_compose_is_cashtag_plus_fixed_phrase():
     # Deliberately no price/%chg/mcap: they'd be stale by read time.
     assert compose_post_text(CAND) == "$AAPL printed a new 52-week high today"
 
+def test_compose_uses_stocktwits_cashtag_format_for_share_classes():
+    # Yahoo says BRK-B; the Stocktwits cashtag is $BRK.B — a $BRK-B post
+    # would never land in the ticker's stream
+    c = Candidate("BRK-B", "Berkshire Hathaway", "NYSE", 500.0, 1.0,
+                  1.1e12, 501.0, "EQUITY")
+    assert compose_post_text(c) == "$BRK.B printed a new 52-week high today"
+
 def test_dryrun_writes_png_and_txt(tmp_path):
     pub = DryRunPublisher(tmp_path, date(2026, 7, 1))
     res = pub.post(CAND, "$AAPL hello", b"\x89PNGfake")

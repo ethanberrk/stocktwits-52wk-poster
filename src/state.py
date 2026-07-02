@@ -12,11 +12,26 @@ def load_posted(path: Path) -> list[dict]:
     return json.loads(Path(path).read_text())["posts"]
 
 
-def append_posted(path: Path, ticker: str, day: date, post_id: str | None) -> None:
+def append_posted(path: Path, ticker: str, day: date, post_id: str | None,
+                  status: str = "posted") -> None:
     path = Path(path)
     posts = load_posted(path)
-    posts.append({"ticker": ticker, "date": day.isoformat(), "post_id": post_id})
+    posts.append({"ticker": ticker, "date": day.isoformat(),
+                  "post_id": post_id, "status": status})
     path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"posts": posts}, indent=2) + "\n")
+
+
+def mark_posted(path: Path, ticker: str, day: date, post_id: str | None) -> None:
+    """Confirm a write-ahead 'pending' entry after the post succeeded."""
+    path = Path(path)
+    posts = load_posted(path)
+    for e in posts:
+        if (e["ticker"] == ticker and e["date"] == day.isoformat()
+                and e.get("status") == "pending"):
+            e["status"] = "posted"
+            e["post_id"] = post_id
+            break
     path.write_text(json.dumps({"posts": posts}, indent=2) + "\n")
 
 
