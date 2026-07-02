@@ -1,0 +1,23 @@
+name: audit
+on:
+  schedule:
+    # 22:30 UTC weekdays = 6:30pm EDT / 5:30pm EST, after the last tick commits
+    - cron: "30 22 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # per-tick checks replay the posted-log's git history
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Audit today's posts against independent data
+        run: python scripts/verify_day.py --today
