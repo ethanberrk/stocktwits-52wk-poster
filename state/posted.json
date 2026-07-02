@@ -24,13 +24,13 @@
       "ticker": "UNH",
       "date": "2026-07-02",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     },
     {
       "ticker": "HSBC",
       "date": "2026-07-02",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     }
   ]
 }
