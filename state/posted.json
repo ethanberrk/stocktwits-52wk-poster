@@ -9,6 +9,16 @@
       "ticker": "JNJ",
       "date": "2026-07-02",
       "post_id": null
+    },
+    {
+      "ticker": "ABBV",
+      "date": "2026-07-02",
+      "post_id": null
+    },
+    {
+      "ticker": "GE",
+      "date": "2026-07-02",
+      "post_id": null
     }
   ]
 }
