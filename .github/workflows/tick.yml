@@ -1,0 +1,40 @@
+# .github/workflows/tick.yml
+name: tick
+on:
+  schedule:
+    # Every 30 min, 13:00-21:59 UTC weekdays. Covers 9:30am-4pm ET in both
+    # EDT (13:30-20:00 UTC) and EST (14:30-21:00 UTC); run.py gates precisely.
+    - cron: "*/30 13-21 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tick
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Run tick
+        env:
+          CHART_IMG_API_KEY: ${{ secrets.CHART_IMG_API_KEY }}
+        run: python run.py
+      - name: Commit state + output
+        run: |
+          git config user.name "52wk-poster-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add state output
+          if git diff --cached --quiet; then
+            echo "nothing posted this tick"; exit 0
+          fi
+          git commit -m "state: tick $(date -u +'%Y-%m-%dT%H:%M')"
+          git pull --rebase origin main
+          git push
