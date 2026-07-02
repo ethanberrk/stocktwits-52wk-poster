@@ -13,5 +13,5 @@ class DryRunPublisher(Publisher):
     def post(self, candidate: Candidate, text: str, image_png: bytes) -> PostResult:
         self.day_dir.mkdir(parents=True, exist_ok=True)
         (self.day_dir / f"{candidate.ticker}.png").write_bytes(image_png)
-        (self.day_dir / f"{candidate.ticker}.txt").write_text(text)
+        (self.day_dir / f"{candidate.ticker}.txt").write_text(text, encoding="utf-8")
         return PostResult(post_id=None, dry_run=True)

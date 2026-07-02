@@ -98,7 +98,7 @@ stocktwits-52wk-poster/
 
 - **FMP source swap** — move off yfinance when it breaks or the project proves out; FMP Starter ~$22/mo, endpoints already researched (screener + batch quotes with `yearHigh`).
 - **Smarter selection** — replace largest-market-cap with a refined heuristic (candidates discussed: fewest Stocktwits watchers "relative strength" thesis, % gain, engagement-informed).
-- **Market-holiday calendar** — v1 relies on "no new data on holidays" + cooldown; a proper exchange calendar (e.g. `pandas-market-calendars`) is cleaner.
+- **Market-holiday calendar — REQUIRED BEFORE PHASE 2 GOES LIVE.** On a full-holiday weekday the market-hours gate passes and Yahoo still carries the prior session's `regularMarketDayHigh`, so unposted names from the previous session's high list would be posted with stale prices and a factually wrong "today." Harmless during Phase 1 dry-run; a content-quality bug once real posting is on. Minimal fix: hardcoded NYSE holiday set in `config.py`; proper fix: `pandas-market-calendars`.
 - **Data-display licensing** — all individual-tier data providers formally restrict public display; chart-img shifts chart licensing to the chart service. Revisit if the account becomes commercial (FMP sells display licensing as an upgrade).
 - **Engagement feedback loop** — use Stocktwits post metrics to tune selection.
 

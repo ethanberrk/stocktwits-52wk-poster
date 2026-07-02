@@ -25,4 +25,4 @@ def test_dryrun_writes_png_and_txt(tmp_path):
     assert res == PostResult(post_id=None, dry_run=True)
     day = tmp_path / "2026-07-01"
     assert (day / "AAPL.png").read_bytes() == b"\x89PNGfake"
-    assert (day / "AAPL.txt").read_text() == "$AAPL hello"
+    assert (day / "AAPL.txt").read_text(encoding="utf-8") == "$AAPL hello"
