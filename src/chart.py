@@ -9,7 +9,7 @@ class ChartError(Exception):
 def _request_args(candidate: Candidate, api_key: str) -> tuple[str, dict, dict]:
     symbol = (f"{candidate.exchange}:{candidate.ticker}"
               if candidate.exchange else candidate.ticker)
-    params = {"symbol": symbol, "interval": "1D", "range": "12M",
+    params = {"symbol": symbol, "interval": "1D", "range": "1Y",
               "width": 800, "height": 450, "theme": "light"}
     return config.CHART_IMG_URL, params, {"x-api-key": api_key}
 

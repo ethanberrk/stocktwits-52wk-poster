@@ -11,7 +11,7 @@ def test_request_args():
     assert url == config.CHART_IMG_URL
     assert params["symbol"] == "NASDAQ:AAPL"
     assert params["interval"] == "1D"
-    assert params["range"] == "12M"
+    assert params["range"] == "1Y"
     assert headers == {"x-api-key": "k3y"}
 
 def test_request_args_no_exchange_falls_back_to_bare_ticker():
