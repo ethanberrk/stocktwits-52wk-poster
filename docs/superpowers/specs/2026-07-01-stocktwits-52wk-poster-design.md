@@ -31,7 +31,7 @@ One Python package. One GitHub Actions workflow ("tick") runs **every 30 minutes
 2. **Select** — filter: common stock only (no ETFs/funds/preferreds/units), market cap > $1B, not blocked by the cooldown rule. Rank survivors by market cap descending.
 3. **Throttle** — post at most **2 per tick** and **20 per day** (config). 13 ticks × 2 = 26 slots, so the daily cap binds on heavy days; the trickle is structural.
 4. **Chart** — fetch a 1-year chart PNG for each winner from chart-img.
-5. **Publish** — compose text (`$TICKER` + new-52wk-high blurb with price and % move) and hand to the `Publisher`. Phase 1: dry-run writer to `output/YYYY-MM-DD/`. Phase 2: Stocktwits API client.
+5. **Publish** — compose text (`$TICKER printed new 52-week high today` — deliberately no price/%chg/market cap, since those numbers go stale between post time and read time; the attached chart carries the quantitative story) and hand to the `Publisher`. Phase 1: dry-run writer to `output/YYYY-MM-DD/`. Phase 2: Stocktwits API client. (Copy decision 2026-07-02.)
 6. **Record** — append ticker/timestamp/post-id to `state/posted.json`, bump `state/daily_count.json`, commit and push both.
 
 A tick that finds nothing new and qualifying exits cleanly — most ticks will.
