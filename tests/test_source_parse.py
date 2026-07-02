@@ -57,4 +57,10 @@ def test_missing_field_dropped():
 def test_exchange_mapping():
     assert _row_to_candidate(row(exchange="NYQ"), TODAY).exchange == "NYSE"
     assert _row_to_candidate(row(exchange="ASE"), TODAY).exchange == "AMEX"
-    assert _row_to_candidate(row(exchange="???"), TODAY).exchange == ""
+    assert _row_to_candidate(row(exchange="NMS"), TODAY).exchange == "NASDAQ"
+
+def test_otc_and_unknown_exchanges_dropped():
+    # pink sheets / OTC markets are not "US stocks at 52wk highs" for our
+    # audience, and chart-img can't resolve them without an exchange prefix
+    for code in ("PNK", "OQX", "OID", "???", None):
+        assert _row_to_candidate(row(exchange=code), TODAY) is None

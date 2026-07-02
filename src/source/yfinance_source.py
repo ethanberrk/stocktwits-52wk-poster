@@ -19,6 +19,11 @@ def _row_to_candidate(row: dict, today: date) -> Candidate | None:
     name = row.get("longName") or row.get("shortName") or ""
     if not name or config.NAME_EXCLUDE_RE.search(name):
         return None
+    # Exchange-listed only: drops OTC/pink-sheet lines (PNK/OQX/OID etc.) —
+    # not the "US stocks at new highs" our audience means, and chart-img
+    # can't resolve them without an exchange prefix anyway.
+    if row.get("exchange") not in _EXCHANGES:
+        return None
     # Freshness gate: the quote must have traded TODAY (ET). On market
     # holidays every quote still carries the previous session's timestamp,
     # so this makes stale "new high today" posts structurally impossible —
