@@ -55,6 +55,18 @@
       "date": "2026-07-06",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "GEV",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "PANW",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
