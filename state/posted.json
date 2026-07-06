@@ -132,13 +132,13 @@
       "ticker": "GD",
       "date": "2026-07-06",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     },
     {
       "ticker": "USB",
       "date": "2026-07-06",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     }
   ]
 }
