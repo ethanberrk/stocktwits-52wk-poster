@@ -103,6 +103,18 @@
       "date": "2026-07-06",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "VRTX",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "FTNT",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
