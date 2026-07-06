@@ -31,6 +31,18 @@
       "date": "2026-07-02",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "V",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "BAC",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
