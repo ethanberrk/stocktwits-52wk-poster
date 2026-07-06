@@ -43,6 +43,18 @@
       "date": "2026-07-06",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "KO",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "HSBC",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
