@@ -127,6 +127,18 @@
       "date": "2026-07-06",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "GD",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "USB",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
