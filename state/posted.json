@@ -115,6 +115,18 @@
       "date": "2026-07-06",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "MUFG",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "BNY",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
