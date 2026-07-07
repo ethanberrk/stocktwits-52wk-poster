@@ -259,6 +259,18 @@
       "date": "2026-07-07",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "FITB",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "EA",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
