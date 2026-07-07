@@ -247,6 +247,18 @@
       "date": "2026-07-07",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "CAH",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "EW",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
