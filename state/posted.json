@@ -156,13 +156,13 @@
       "ticker": "JNJ",
       "date": "2026-07-07",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     },
     {
       "ticker": "LIN",
       "date": "2026-07-07",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     }
   ]
 }
