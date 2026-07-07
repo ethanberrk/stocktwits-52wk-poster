@@ -228,13 +228,13 @@
       "ticker": "AFL",
       "date": "2026-07-07",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     },
     {
       "ticker": "D",
       "date": "2026-07-07",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     }
   ]
 }
