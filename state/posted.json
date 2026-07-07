@@ -175,6 +175,18 @@
       "date": "2026-07-07",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "CB",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "PNC",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
