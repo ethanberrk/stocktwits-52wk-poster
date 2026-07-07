@@ -199,6 +199,18 @@
       "date": "2026-07-07",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "AEP",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "CNI",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
