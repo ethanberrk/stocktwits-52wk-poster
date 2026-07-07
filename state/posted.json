@@ -235,6 +235,18 @@
       "date": "2026-07-07",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "MET",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "CTVA",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
