@@ -264,13 +264,13 @@
       "ticker": "FITB",
       "date": "2026-07-07",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     },
     {
       "ticker": "EA",
       "date": "2026-07-07",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     }
   ]
 }
