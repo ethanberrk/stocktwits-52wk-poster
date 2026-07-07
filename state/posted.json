@@ -168,13 +168,13 @@
       "ticker": "LLY",
       "date": "2026-07-07",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     },
     {
       "ticker": "BBVA",
       "date": "2026-07-07",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     }
   ]
 }
