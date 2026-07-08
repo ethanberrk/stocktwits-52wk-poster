@@ -367,6 +367,12 @@
       "date": "2026-07-08",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "LQDA",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
