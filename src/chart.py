@@ -9,14 +9,17 @@ class ChartError(Exception):
 def _request_args(candidate: Candidate, api_key: str) -> tuple[str, dict, dict]:
     symbol = (f"{candidate.exchange}:{candidate.ticker}"
               if candidate.exchange else candidate.ticker)
-    params = {"symbol": symbol, "interval": "1D", "range": "1Y",
-              "width": 800, "height": 450, "theme": "light"}
-    return config.CHART_IMG_URL, params, {"x-api-key": api_key}
+    # session="regular" drops pre/post-market so the snapshot never freezes an
+    # extended-hours "Pre" price line (a real artifact on charts captured in the
+    # opening minute). v2 takes these as a POST JSON body, not query params.
+    body = {"symbol": symbol, "interval": "1D", "range": "1Y",
+            "width": 800, "height": 450, "theme": "light", "session": "regular"}
+    return config.CHART_IMG_URL, body, {"x-api-key": api_key}
 
 def fetch_chart_png(candidate: Candidate, api_key: str) -> bytes:
-    url, params, headers = _request_args(candidate, api_key)
+    url, body, headers = _request_args(candidate, api_key)
     try:
-        resp = requests.get(url, params=params, headers=headers, timeout=30)
+        resp = requests.post(url, json=body, headers=headers, timeout=30)
     except requests.RequestException as e:
         raise ChartError(f"{candidate.ticker}: {e}") from e
     if resp.status_code != 200:
