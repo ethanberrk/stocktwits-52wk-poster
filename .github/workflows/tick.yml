@@ -27,10 +27,11 @@ jobs:
         env:
           CHART_IMG_API_KEY: ${{ secrets.CHART_IMG_API_KEY }}
           STOCKTWITS_ACCESS_TOKEN: ${{ secrets.STOCKTWITS_ACCESS_TOKEN }}
-          # Launch ramp: 1 post/tick, 3/day for the first live week. Revert
-          # (remove these two) once posting looks healthy — defaults are 2/20.
+          # Launch ramp: 1 post/tick (a gentle 30-min trickle that dodges the
+          # duplicate filter), 12/day for broader coverage. Revert (remove these
+          # two) once posting looks healthy — defaults are 2/20.
           MAX_PER_TICK: "1"
-          MAX_PER_DAY: "3"
+          MAX_PER_DAY: "12"
           PYTHONUNBUFFERED: "1"
         run: python run.py --sync-state --live
       - name: Commit state + output
