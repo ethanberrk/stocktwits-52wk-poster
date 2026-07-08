@@ -2,6 +2,7 @@ from datetime import date
 from src.source.base import Candidate
 from src.publish.base import compose_post_text, PostResult
 from src.publish.dryrun import DryRunPublisher
+from src.publish.record import write_post_artifacts
 
 CAND = Candidate("AAPL", "Apple Inc.", "NASDAQ", 251.37, 1.84,
                  3.91e12, 252.0, "EQUITY")
@@ -24,3 +25,11 @@ def test_dryrun_writes_png_and_txt(tmp_path):
     day = tmp_path / "2026-07-01"
     assert (day / "AAPL.png").read_bytes() == b"\x89PNGfake"
     assert (day / "AAPL.txt").read_text(encoding="utf-8") == "$AAPL hello"
+
+def test_write_post_artifacts_creates_png_and_txt(tmp_path):
+    write_post_artifacts(tmp_path, date(2026, 7, 8), "AAPL",
+                         "$AAPL printed a new 52-week high today", b"\x89PNGdata")
+    day = tmp_path / "2026-07-08"
+    assert (day / "AAPL.png").read_bytes() == b"\x89PNGdata"
+    assert (day / "AAPL.txt").read_text(encoding="utf-8") == \
+        "$AAPL printed a new 52-week high today"
