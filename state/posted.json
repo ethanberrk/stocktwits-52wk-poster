@@ -319,6 +319,18 @@
       "date": "2026-07-08",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "DINO",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "IONS",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
