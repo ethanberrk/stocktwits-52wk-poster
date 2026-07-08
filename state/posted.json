@@ -312,13 +312,13 @@
       "ticker": "INCY",
       "date": "2026-07-08",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     },
     {
       "ticker": "INCY",
       "date": "2026-07-08",
       "post_id": null,
-      "status": "pending"
+      "status": "posted"
     }
   ]
 }
