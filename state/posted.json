@@ -373,6 +373,18 @@
       "date": "2026-07-08",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "PTCT",
+      "date": "2026-07-08",
+      "post_id": "658592909",
+      "status": "posted"
+    },
+    {
+      "ticker": "XENE",
+      "date": "2026-07-08",
+      "post_id": "658593116",
+      "status": "posted"
     }
   ]
 }
