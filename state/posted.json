@@ -271,6 +271,18 @@
       "date": "2026-07-07",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "VLO",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "MPC",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
