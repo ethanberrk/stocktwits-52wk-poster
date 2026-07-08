@@ -67,12 +67,14 @@ Constructor: `StocktwitsPublisher(access_token, user_agent, url, out_dir, today)
 
 `post(candidate, text, image_png) -> PostResult`:
 
-- **Writes the `output/<day>/<TICKER>.png` + `.txt` artifacts first** (identical
-  to `DryRunPublisher`), so (a) the nightly audit's `artifacts` check — which
-  requires the PNG/txt to exist and agree with state — keeps passing in live
-  mode, and (b) we retain a committed, auditable record of every *undeletable*
-  post. Artifact‑writing is extracted into a shared helper reused by both
-  publishers (no duplicated file logic). Then it posts.
+- **Writes the `output/<day>/<TICKER>.png` + `.txt` artifacts only after the
+  post succeeds** (identical output to `DryRunPublisher`), so (a) the nightly
+  audit's `artifacts` check — which requires a *posted* entry's PNG/txt to exist
+  and agree with state — keeps passing in live mode, (b) a Cloudflare‑lost post
+  stays a clean `pending` (audit WARN, no orphan file) rather than leaving an
+  artifact for a post that never went out, and (c) we retain a committed,
+  auditable record of every *undeletable* post. Artifact‑writing is extracted
+  into a shared helper reused by both publishers (no duplicated file logic).
 - Builds a **`multipart/form-data`** body (assembled manually — urllib has no
   multipart helper) with three parts:
   - `access_token` — form field, the token.
@@ -106,8 +108,14 @@ Uses the existing `compose_post_text` and `st_symbol` — no copy changes.
 
 - `STOCKTWITS_CREATE_URL = "https://api.stocktwits.com/api/2/messages/create.json"`
 - `STOCKTWITS_USER_AGENT = "stocktwits-52wk-poster/1.0"`
-- **Launch ramp:** `MAX_PER_TICK = 1`, `MAX_PER_DAY = 3`. (Reverted upward after
-  the first clean live week; recorded as a follow‑up.)
+- **Launch ramp via env override:** make `MAX_PER_TICK` / `MAX_PER_DAY`
+  env‑overridable (`int(os.environ.get(..., default))`) with **unchanged
+  defaults `2` / `20`**, then set `MAX_PER_TICK=1` / `MAX_PER_DAY=3` in the
+  environment for the launch (workflow + local first post). Rationale: hardcoding
+  `1`/`3` into config would break the existing cap‑behavior unit tests and the
+  audit's per‑tick batch check, which pin the defaults; env override achieves the
+  same ramp without disturbing either. Reverted (env removed) after the first
+  clean live week; recorded as a follow‑up.
 
 ### 4. Secrets & workflow
 
