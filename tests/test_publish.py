@@ -106,3 +106,17 @@ def test_stocktwits_publisher_uses_urllib_not_requests():
     import inspect
     import src.publish.stocktwits_pub as m
     assert "import requests" not in inspect.getsource(m)
+
+def test_stocktwits_post_raises_on_unparseable_body(tmp_path):
+    def fake_urlopen(req, timeout=None):
+        return _FakeResp(b"<html>not json</html>")
+    with pytest.raises(PublishError):
+        _pub(tmp_path, fake_urlopen).post(CAND, "text", b"PNG")
+    assert not (tmp_path / "2026-07-08").exists()   # no orphan artifact on failure
+
+def test_stocktwits_post_raises_on_missing_message_id(tmp_path):
+    def fake_urlopen(req, timeout=None):
+        return _FakeResp(json.dumps({"response": {"status": 200}}).encode())
+    with pytest.raises(PublishError):
+        _pub(tmp_path, fake_urlopen).post(CAND, "text", b"PNG")
+    assert not (tmp_path / "2026-07-08").exists()
