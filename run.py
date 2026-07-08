@@ -13,6 +13,7 @@ from src import select, state, stocktwits
 from src.chart import ChartError, fetch_chart_png
 from src.publish.base import Publisher, compose_post_text
 from src.publish.dryrun import DryRunPublisher
+from src.publish.stocktwits_pub import PublishError, StocktwitsPublisher
 from src.source.base import HighsSource, SourceError
 from src.source.yfinance_source import YFinanceSource
 
@@ -54,7 +55,14 @@ def tick(source: HighsSource, publisher: Publisher, chart_fetch,
 
     done: list[str] = []
     for c, png in ready:
-        result = publisher.post(c, compose_post_text(c), png)
+        try:
+            result = publisher.post(c, compose_post_text(c), png)
+        except PublishError as e:
+            # Expected failure (e.g. Cloudflare block): leave the ticker
+            # 'pending' — blocked from re-selection today, lost, never duplicated.
+            print(f"publish failed for {c.ticker}, staying pending: {e}",
+                  file=sys.stderr)
+            continue
         state.mark_posted(state_path, c.ticker, today, result.post_id)
         done.append(c.ticker)
         print(f"posted {c.ticker} (dry_run={result.dry_run})")
@@ -72,6 +80,17 @@ def _git_sync_state() -> None:
     subprocess.run(["git", "pull", "--rebase", "origin", "main"], check=True)
     subprocess.run(["git", "push", "origin", "HEAD:main"], check=True)
 
+def build_publisher(live: bool, out_dir: Path, today) -> Publisher:
+    """Dry-run unless --live AND a token are present. --live without a token is
+    a hard error, never a silent downgrade to dry-run."""
+    if not live:
+        return DryRunPublisher(out_dir, today)
+    token = os.environ.get("STOCKTWITS_ACCESS_TOKEN", "")
+    if not token:
+        print("--live requires STOCKTWITS_ACCESS_TOKEN", file=sys.stderr)
+        raise SystemExit(1)
+    return StocktwitsPublisher(token, out_dir, today)
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true",
@@ -80,6 +99,8 @@ def main() -> int:
                     help="git-push pending intents before posting (CI only)")
     ap.add_argument("--state", default="state/posted.json", type=Path)
     ap.add_argument("--output", default="output", type=Path)
+    ap.add_argument("--live", action="store_true",
+                    help="post to Stocktwits for real (needs STOCKTWITS_ACCESS_TOKEN)")
     args = ap.parse_args()
 
     api_key = os.environ.get("CHART_IMG_API_KEY", "")
@@ -89,7 +110,7 @@ def main() -> int:
 
     now = datetime.now(timezone.utc)
     today = now.astimezone(ZoneInfo(config.MARKET_TZ)).date()
-    publisher = DryRunPublisher(args.output, today)  # Phase 2: swap for Stocktwits
+    publisher = build_publisher(args.live, args.output, today)
     try:
         tick(YFinanceSource(), publisher,
              lambda c: fetch_chart_png(c, api_key), args.state, now, args.force,
