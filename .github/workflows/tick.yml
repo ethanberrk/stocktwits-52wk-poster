@@ -26,8 +26,13 @@ jobs:
       - name: Run tick
         env:
           CHART_IMG_API_KEY: ${{ secrets.CHART_IMG_API_KEY }}
+          STOCKTWITS_ACCESS_TOKEN: ${{ secrets.STOCKTWITS_ACCESS_TOKEN }}
+          # Launch ramp: 1 post/tick, 3/day for the first live week. Revert
+          # (remove these two) once posting looks healthy — defaults are 2/20.
+          MAX_PER_TICK: "1"
+          MAX_PER_DAY: "3"
           PYTHONUNBUFFERED: "1"
-        run: python run.py --sync-state
+        run: python run.py --sync-state --live
       - name: Commit state + output
         # always(): if the tick crashed mid-posting, the pending/confirmed
         # state on disk must still be persisted so nothing double-posts

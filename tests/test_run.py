@@ -1,9 +1,12 @@
 from datetime import datetime, timezone, date
+import os
 import pytest
 import run
 from src.chart import ChartError
 from src.source.base import Candidate, HighsSource
 from src.publish.base import Publisher, PostResult
+from src.publish.dryrun import DryRunPublisher
+from src.publish.stocktwits_pub import StocktwitsPublisher, PublishError
 from src import state
 
 NOW = datetime(2026, 7, 1, 14, 0, tzinfo=timezone.utc)  # Wed 10:00 ET, market open
@@ -102,3 +105,30 @@ def test_second_tick_same_day_respects_cooldown(tmp_path):
     run.tick(src, SpyPublisher(), lambda c: b"PNG", sp, NOW)
     got2 = run.tick(src, SpyPublisher(), lambda c: b"PNG", sp, NOW)
     assert got2 == ["SM"]                    # BIG/MID posted today -> blocked
+
+def test_build_publisher_dryrun_by_default(tmp_path):
+    pub = run.build_publisher(False, tmp_path, TODAY)
+    assert isinstance(pub, DryRunPublisher)
+
+def test_build_publisher_live_needs_token(tmp_path, monkeypatch):
+    monkeypatch.delenv("STOCKTWITS_ACCESS_TOKEN", raising=False)
+    with pytest.raises(SystemExit):
+        run.build_publisher(True, tmp_path, TODAY)
+
+def test_build_publisher_live_with_token(tmp_path, monkeypatch):
+    monkeypatch.setenv("STOCKTWITS_ACCESS_TOKEN", "TKN")
+    pub = run.build_publisher(True, tmp_path, TODAY)
+    assert isinstance(pub, StocktwitsPublisher)
+
+def test_publish_error_skips_ticker_and_continues(tmp_path):
+    sp = tmp_path / "posted.json"
+    class Flaky(Publisher):
+        def post(self, candidate, text, image_png):
+            if candidate.ticker == "BIG":
+                raise PublishError("cloudflare 403")
+            return PostResult(post_id="x", dry_run=False)
+    got = run.tick(FakeSource([cand("BIG", 9e9), cand("MID", 5e9)]),
+                   Flaky(), lambda c: b"PNG", sp, NOW)
+    assert got == ["MID"]
+    status = {e["ticker"]: e["status"] for e in state.load_posted(sp)}
+    assert status == {"BIG": "pending", "MID": "posted"}

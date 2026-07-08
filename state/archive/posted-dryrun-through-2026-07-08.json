@@ -1,0 +1,390 @@
+{
+  "posts": [
+    {
+      "ticker": "V",
+      "date": "2026-07-02",
+      "post_id": null
+    },
+    {
+      "ticker": "JNJ",
+      "date": "2026-07-02",
+      "post_id": null
+    },
+    {
+      "ticker": "ABBV",
+      "date": "2026-07-02",
+      "post_id": null
+    },
+    {
+      "ticker": "GE",
+      "date": "2026-07-02",
+      "post_id": null
+    },
+    {
+      "ticker": "UNH",
+      "date": "2026-07-02",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "HSBC",
+      "date": "2026-07-02",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "V",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "BAC",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "KO",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "HSBC",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "GEV",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "PANW",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "CRWD",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "SAN",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "UBS",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "UNP",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "WELL",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "SMFG",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "VRTX",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "FTNT",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "MUFG",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "BNY",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "GD",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "USB",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "BCS",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "ING",
+      "date": "2026-07-06",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "JNJ",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "LIN",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "LLY",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "BBVA",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "CB",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "PNC",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "MNST",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "SPG",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "AEP",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "CNI",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "TRV",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "ALL",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "AFL",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "D",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "MET",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "CTVA",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "CAH",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "EW",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "FITB",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "EA",
+      "date": "2026-07-07",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "VLO",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "MPC",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "ROIV",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "RGA",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "UNH",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "RPRX",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "INCY",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "INCY",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "DINO",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "IONS",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "MOH",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "NUVL",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "GKOS",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "FR",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "ASND",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "SGHC",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "LQDA",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "posted"
+    },
+    {
+      "ticker": "PTCT",
+      "date": "2026-07-08",
+      "post_id": "658592909",
+      "status": "posted"
+    },
+    {
+      "ticker": "XENE",
+      "date": "2026-07-08",
+      "post_id": "658593116",
+      "status": "posted"
+    }
+  ]
+}
