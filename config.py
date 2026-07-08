@@ -1,9 +1,10 @@
 """All knobs in one place. Nothing else defines numbers or thresholds."""
+import os
 import re
 
 MIN_MARKET_CAP = 1_000_000_000          # USD floor
-MAX_PER_TICK = 2                        # posts per 30-min tick
-MAX_PER_DAY = 20                        # posts per trading day
+MAX_PER_TICK = int(os.environ.get("MAX_PER_TICK", "2"))   # posts per 30-min tick
+MAX_PER_DAY = int(os.environ.get("MAX_PER_DAY", "20"))    # posts per trading day
 MAX_PLAUSIBLE_HIGHS = 500               # validation gate: more = broken source
 
 MARKET_TZ = "America/New_York"
