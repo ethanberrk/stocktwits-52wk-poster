@@ -2,7 +2,8 @@
 # Delete before merging — kept only to prove the GET->POST/v2 migration works.
 name: verify-chart-v2
 on:
-  workflow_dispatch: {}
+  push:
+    branches: [fix/chart-v2-regular-session]
 permissions:
   contents: read
 jobs:
