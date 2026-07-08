@@ -343,6 +343,18 @@
       "date": "2026-07-08",
       "post_id": null,
       "status": "posted"
+    },
+    {
+      "ticker": "GKOS",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "pending"
+    },
+    {
+      "ticker": "FR",
+      "date": "2026-07-08",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
