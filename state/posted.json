@@ -35,6 +35,12 @@
       "date": "2026-07-09",
       "post_id": "658654021",
       "status": "posted"
+    },
+    {
+      "ticker": "ELV",
+      "date": "2026-07-09",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
