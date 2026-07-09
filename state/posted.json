@@ -83,6 +83,12 @@
       "date": "2026-07-09",
       "post_id": "658681913",
       "status": "posted"
+    },
+    {
+      "ticker": "STT",
+      "date": "2026-07-09",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
