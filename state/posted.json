@@ -71,6 +71,12 @@
       "date": "2026-07-09",
       "post_id": "658675443",
       "status": "posted"
+    },
+    {
+      "ticker": "MFC",
+      "date": "2026-07-09",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
