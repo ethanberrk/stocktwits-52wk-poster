@@ -77,6 +77,12 @@
       "date": "2026-07-09",
       "post_id": "658679278",
       "status": "posted"
+    },
+    {
+      "ticker": "SMFG",
+      "date": "2026-07-09",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
