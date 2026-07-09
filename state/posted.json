@@ -65,6 +65,12 @@
       "date": "2026-07-09",
       "post_id": "658671459",
       "status": "posted"
+    },
+    {
+      "ticker": "CNI",
+      "date": "2026-07-09",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
