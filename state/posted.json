@@ -47,6 +47,12 @@
       "date": "2026-07-09",
       "post_id": "658662735",
       "status": "posted"
+    },
+    {
+      "ticker": "MFG",
+      "date": "2026-07-09",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
