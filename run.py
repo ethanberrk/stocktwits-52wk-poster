@@ -103,17 +103,12 @@ def main() -> int:
                     help="post to Stocktwits for real (needs STOCKTWITS_ACCESS_TOKEN)")
     args = ap.parse_args()
 
-    api_key = os.environ.get("CHART_IMG_API_KEY", "")
-    if not api_key:
-        print("CHART_IMG_API_KEY not set", file=sys.stderr)
-        return 1
-
     now = datetime.now(timezone.utc)
     today = now.astimezone(ZoneInfo(config.MARKET_TZ)).date()
     publisher = build_publisher(args.live, args.output, today)
     try:
         tick(YFinanceSource(), publisher,
-             lambda c: fetch_chart_png(c, api_key), args.state, now, args.force,
+             fetch_chart_png, args.state, now, args.force,
              symbol_check=stocktwits.symbol_exists,
              state_sync=_git_sync_state if args.sync_state else None)
     except (SourceError, select.ValidationError) as e:

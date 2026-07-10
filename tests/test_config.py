@@ -37,3 +37,14 @@ def test_stocktwits_constants_present():
     assert config.STOCKTWITS_CREATE_URL == \
         "https://api.stocktwits.com/api/2/messages/create.json"
     assert config.STOCKTWITS_USER_AGENT == "stocktwits-52wk-poster/1.0"
+
+def test_chart_source_config():
+    # keyless stockanalysis endpoints drive the self-rendered charts
+    assert "{ticker}" in config.SA_QUOTE_URL
+    assert "{ticker}" in config.SA_HISTORY_URL
+    assert "range=1Y" in config.SA_HISTORY_URL
+    assert "period=Daily" in config.SA_HISTORY_URL
+    assert config.MIN_HISTORY_DAYS == 330
+    assert (config.CHART_WIDTH, config.CHART_HEIGHT) == (800, 450)
+    # chart-img is gone entirely
+    assert not hasattr(config, "CHART_IMG_URL")
