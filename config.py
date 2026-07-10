@@ -11,9 +11,15 @@ MARKET_TZ = "America/New_York"
 MARKET_OPEN = (9, 30)                   # ET
 MARKET_CLOSE = (16, 0)                  # ET
 
-# v2 (POST + JSON body): the only version exposing `session`, which we pin to
-# "regular" so a chart captured at the open never shows a pre-market price line.
-CHART_IMG_URL = "https://api.chart-img.com/v2/tradingview/advanced-chart"
+# Self-rendered charts: keyless daily-OHLC history + live quote from
+# stockanalysis.com (same source the relative-strength poster runs on).
+SA_QUOTE_URL = "https://stockanalysis.com/api/quotes/s/{ticker}"
+SA_HISTORY_URL = ("https://stockanalysis.com/api/symbol/s/{ticker}/history"
+                  "?range=1Y&period=Daily")
+MIN_HISTORY_DAYS = 330      # refuse a "1Y" chart for a recent IPO with less
+                            # than ~11 months of candles — it would mislead
+CHART_WIDTH = 800           # px; matches the size chart-img produced
+CHART_HEIGHT = 450
 # public, unauthenticated; used to validate a cashtag resolves before posting
 STOCKTWITS_SYMBOL_URL = "https://api.stocktwits.com/api/2/streams/symbol/{symbol}.json"
 STOCKTWITS_CREATE_URL = "https://api.stocktwits.com/api/2/messages/create.json"
