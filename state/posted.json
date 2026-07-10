@@ -125,6 +125,12 @@
       "date": "2026-07-10",
       "post_id": "658770900",
       "status": "posted"
+    },
+    {
+      "ticker": "CM",
+      "date": "2026-07-10",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
