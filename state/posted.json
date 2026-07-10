@@ -155,6 +155,12 @@
       "date": "2026-07-10",
       "post_id": "658789073",
       "status": "posted"
+    },
+    {
+      "ticker": "SLF",
+      "date": "2026-07-10",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
