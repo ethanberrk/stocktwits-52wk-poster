@@ -137,6 +137,12 @@
       "date": "2026-07-10",
       "post_id": "658778822",
       "status": "posted"
+    },
+    {
+      "ticker": "NSC",
+      "date": "2026-07-10",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
