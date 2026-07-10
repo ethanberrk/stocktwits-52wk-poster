@@ -28,7 +28,6 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run tick
         env:
-          CHART_IMG_API_KEY: ${{ secrets.CHART_IMG_API_KEY }}
           STOCKTWITS_ACCESS_TOKEN: ${{ secrets.STOCKTWITS_ACCESS_TOKEN }}
           # Launch ramp: 1 post/tick (a gentle 30-min trickle that dodges the
           # duplicate filter), 12/day for broader coverage. Revert (remove these
