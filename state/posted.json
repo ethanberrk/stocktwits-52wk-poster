@@ -143,6 +143,12 @@
       "date": "2026-07-10",
       "post_id": "658782500",
       "status": "posted"
+    },
+    {
+      "ticker": "MET",
+      "date": "2026-07-10",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
