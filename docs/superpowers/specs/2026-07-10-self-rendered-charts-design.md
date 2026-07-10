@@ -110,3 +110,11 @@ user; yfinance declares its own requests dependency). Install matplotlib into
 - Volume pane, dark-theme charts, any styling divergence from the RS renderer.
 - The dead-man's-switch / spacing-guard hardening items from 2026-07-09 —
   unrelated to charts, still the obvious next hardening.
+- **Tick starvation on deterministic ChartErrors (final-review finding,
+  deferred 2026-07-10):** `select.pick` takes the top-N by market cap and a
+  chart-failed ticker stays eligible, so a name that fails *permanently*
+  (e.g. a recent mega-IPO tripping the MIN_HISTORY_DAYS guard) is re-picked
+  every tick and can silence the bot for the day under MAX_PER_TICK=1. Fix
+  direction: have the tick walk further down the eligible list until it
+  fills MAX_PER_TICK ready names. Ranks with the dead-man's-switch as top
+  hardening work.
