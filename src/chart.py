@@ -74,7 +74,7 @@ def _render_png(candidate: Candidate, hist: list[list]) -> bytes:
     fig.subplots_adjust(left=0.012, right=0.925, top=0.90, bottom=0.075)
 
     n = len(hist)
-    body_w = max(0.55, min(0.7, 0.7))  # in index units; thin at 1Y density
+    body_w = 0.7  # in index units; thin at 1Y density
     for i, (_, o, hi, lo, c) in enumerate(hist):
         col = UP if c >= o else DOWN
         ax.plot([i, i], [lo, hi], color=col, linewidth=0.7, zorder=2)
