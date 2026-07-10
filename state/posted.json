@@ -101,6 +101,12 @@
       "date": "2026-07-10",
       "post_id": null,
       "status": "pending"
+    },
+    {
+      "ticker": "MUFG",
+      "date": "2026-07-10",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
