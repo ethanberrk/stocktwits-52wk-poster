@@ -46,6 +46,60 @@ def test_fetch_history_appends_today_candle_when_stale(monkeypatch):
     assert rows[0][0] == "2025-07-10"
 
 
+def test_fetch_history_converts_dash_ticker_to_dot_for_stockanalysis(monkeypatch):
+    urls = []
+
+    def fake_get_json(url, **kw):
+        urls.append(url)
+        if "history" in url:
+            return {"data": [{"t": "2025-07-10", "o": 20.0, "h": 20.5,
+                              "l": 19.8, "c": 20.2},
+                             {"t": "2026-07-08", "o": 37.0, "h": 37.5,
+                              "l": 35.1, "c": 37.47}]}
+        if "api/quotes" in url:
+            return {"data": {"p": 42.39, "o": 38.33, "h": 42.67, "l": 38.26}}
+        raise AssertionError(f"unexpected url {url}")
+
+    monkeypatch.setattr(chart, "get_json", fake_get_json)
+    chart._fetch_history("BRK-B", today=date(2026, 7, 9))
+    assert urls, "get_json was never called"
+    for url in urls:
+        assert "BRK.B" in url
+        assert "BRK-B" not in url
+
+
+def test_fetch_history_raises_when_stale_and_quote_is_none(monkeypatch):
+    def fake_get_json(url, **kw):
+        if "history" in url:
+            return {"data": [{"t": "2025-07-10", "o": 20.0, "h": 20.5,
+                              "l": 19.8, "c": 20.2},
+                             {"t": "2026-07-08", "o": 37.0, "h": 37.5,
+                              "l": 35.1, "c": 37.47}]}
+        if "api/quotes" in url:
+            return None
+        raise AssertionError(f"unexpected url {url}")
+
+    monkeypatch.setattr(chart, "get_json", fake_get_json)
+    with pytest.raises(chart.ChartError, match="quote unusable"):
+        chart._fetch_history("TXG", today=date(2026, 7, 9))
+
+
+def test_fetch_history_raises_when_stale_and_quote_missing_open(monkeypatch):
+    def fake_get_json(url, **kw):
+        if "history" in url:
+            return {"data": [{"t": "2025-07-10", "o": 20.0, "h": 20.5,
+                              "l": 19.8, "c": 20.2},
+                             {"t": "2026-07-08", "o": 37.0, "h": 37.5,
+                              "l": 35.1, "c": 37.47}]}
+        if "api/quotes" in url:
+            return {"data": {"p": 42.39, "o": 0, "h": 42.67, "l": 38.26}}
+        raise AssertionError(f"unexpected url {url}")
+
+    monkeypatch.setattr(chart, "get_json", fake_get_json)
+    with pytest.raises(chart.ChartError, match="quote unusable"):
+        chart._fetch_history("TXG", today=date(2026, 7, 9))
+
+
 def test_fetch_history_no_append_when_current(monkeypatch):
     def fake_get_json(url, **kw):
         if "history" in url:

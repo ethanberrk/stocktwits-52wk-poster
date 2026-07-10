@@ -20,6 +20,7 @@ from matplotlib.patches import Rectangle
 import config
 from src.fetch import get_json
 from src.source.base import Candidate
+from src.stocktwits import st_symbol
 
 UP, DOWN = "#089981", "#F23645"
 INK, MUTED, GRID = "#131722", "#787b86", "#e9edf1"
@@ -35,7 +36,8 @@ def _fetch_history(ticker: str, today: date | None = None) -> list[list]:
     """[[YYYY-MM-DD, o, h, l, c], ...] ascending, ending with today's candle."""
     if today is None:
         today = datetime.now(ZoneInfo(config.MARKET_TZ)).date()
-    d = get_json(config.SA_HISTORY_URL.format(ticker=ticker))
+    sa_symbol = st_symbol(ticker)
+    d = get_json(config.SA_HISTORY_URL.format(ticker=sa_symbol))
     rows = (d or {}).get("data") or []
     hist = sorted(([r["t"], r["o"], r["h"], r["l"], r["c"]] for r in rows),
                   key=lambda r: r[0])
@@ -47,11 +49,15 @@ def _fetch_history(ticker: str, today: date | None = None) -> list[list]:
             f"{ticker}: history starts {hist[0][0]}, needs to reach back to "
             f"{cutoff} — likely a recent IPO, 1Y chart would mislead")
     if hist[-1][0] < today.isoformat():
-        q = (get_json(config.SA_QUOTE_URL.format(ticker=ticker)) or {}).get("data")
+        q = (get_json(config.SA_QUOTE_URL.format(ticker=sa_symbol)) or {}).get("data")
         if q and q.get("p") and q.get("o"):
             p = float(q["p"])
             hist.append([today.isoformat(), float(q["o"]),
                          float(q.get("h") or p), float(q.get("l") or p), p])
+        else:
+            raise ChartError(
+                f"{ticker}: history ends {hist[-1][0]}, live quote unusable "
+                f"— chart would miss today's move")
     return hist
 
 
