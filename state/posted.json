@@ -191,6 +191,12 @@
       "date": "2026-07-13",
       "post_id": "658908887",
       "status": "posted"
+    },
+    {
+      "ticker": "BNS",
+      "date": "2026-07-13",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
