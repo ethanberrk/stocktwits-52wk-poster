@@ -227,6 +227,12 @@
       "date": "2026-07-13",
       "post_id": "658933571",
       "status": "posted"
+    },
+    {
+      "ticker": "GWW",
+      "date": "2026-07-13",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
