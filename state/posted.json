@@ -221,6 +221,12 @@
       "date": "2026-07-13",
       "post_id": "658929682",
       "status": "posted"
+    },
+    {
+      "ticker": "CNI",
+      "date": "2026-07-13",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
