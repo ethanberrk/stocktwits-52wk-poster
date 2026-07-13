@@ -173,6 +173,12 @@
       "date": "2026-07-13",
       "post_id": "658896453",
       "status": "posted"
+    },
+    {
+      "ticker": "CVS",
+      "date": "2026-07-13",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
