@@ -269,6 +269,12 @@
       "date": "2026-07-14",
       "post_id": "659014764",
       "status": "posted"
+    },
+    {
+      "ticker": "RY",
+      "date": "2026-07-15",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
