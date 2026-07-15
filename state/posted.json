@@ -275,6 +275,12 @@
       "date": "2026-07-15",
       "post_id": "659102306",
       "status": "posted"
+    },
+    {
+      "ticker": "AAPL",
+      "date": "2026-07-15",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
