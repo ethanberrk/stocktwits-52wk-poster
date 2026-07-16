@@ -365,6 +365,12 @@
       "date": "2026-07-16",
       "post_id": "659230861",
       "status": "posted"
+    },
+    {
+      "ticker": "USB",
+      "date": "2026-07-16",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
