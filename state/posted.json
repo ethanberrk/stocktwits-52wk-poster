@@ -383,6 +383,12 @@
       "date": "2026-07-16",
       "post_id": "659252064",
       "status": "posted"
+    },
+    {
+      "ticker": "CSX",
+      "date": "2026-07-16",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
