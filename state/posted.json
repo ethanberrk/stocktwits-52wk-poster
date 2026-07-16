@@ -359,6 +359,12 @@
       "date": "2026-07-16",
       "post_id": "659225212",
       "status": "posted"
+    },
+    {
+      "ticker": "PNC",
+      "date": "2026-07-16",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
