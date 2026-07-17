@@ -437,6 +437,12 @@
       "date": "2026-07-17",
       "post_id": "659368334",
       "status": "posted"
+    },
+    {
+      "ticker": "PANW",
+      "date": "2026-07-17",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
