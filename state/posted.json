@@ -479,6 +479,12 @@
       "date": "2026-07-17",
       "post_id": "659395860",
       "status": "posted"
+    },
+    {
+      "ticker": "SPG",
+      "date": "2026-07-17",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
