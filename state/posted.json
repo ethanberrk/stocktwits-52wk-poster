@@ -417,8 +417,8 @@
     {
       "ticker": "AAPL",
       "date": "2026-07-17",
-      "post_id": null,
-      "status": "pending"
+      "post_id": "659352378",
+      "status": "posted"
     }
   ]
 }
