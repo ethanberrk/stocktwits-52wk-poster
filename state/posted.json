@@ -431,6 +431,12 @@
       "date": "2026-07-17",
       "post_id": "659364064",
       "status": "posted"
+    },
+    {
+      "ticker": "PM",
+      "date": "2026-07-17",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
