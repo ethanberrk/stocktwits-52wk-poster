@@ -527,6 +527,12 @@
       "date": "2026-07-20",
       "post_id": "659522229",
       "status": "posted"
+    },
+    {
+      "ticker": "CHRW",
+      "date": "2026-07-20",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
