@@ -503,6 +503,12 @@
       "date": "2026-07-20",
       "post_id": "659507838",
       "status": "posted"
+    },
+    {
+      "ticker": "TRV",
+      "date": "2026-07-20",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
