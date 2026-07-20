@@ -491,6 +491,12 @@
       "date": "2026-07-20",
       "post_id": "659498266",
       "status": "posted"
+    },
+    {
+      "ticker": "MPC",
+      "date": "2026-07-20",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
