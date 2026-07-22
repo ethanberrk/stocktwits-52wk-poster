@@ -605,6 +605,12 @@
       "date": "2026-07-22",
       "post_id": "659702637",
       "status": "posted"
+    },
+    {
+      "ticker": "ING",
+      "date": "2026-07-22",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
