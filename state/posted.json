@@ -653,6 +653,12 @@
       "date": "2026-07-22",
       "post_id": "659738444",
       "status": "posted"
+    },
+    {
+      "ticker": "PRU",
+      "date": "2026-07-22",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
