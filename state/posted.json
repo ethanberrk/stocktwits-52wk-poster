@@ -719,6 +719,12 @@
       "date": "2026-07-23",
       "post_id": "659858012",
       "status": "posted"
+    },
+    {
+      "ticker": "TRGP",
+      "date": "2026-07-23",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
