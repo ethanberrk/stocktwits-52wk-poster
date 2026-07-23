@@ -683,6 +683,12 @@
       "date": "2026-07-23",
       "post_id": "659825800",
       "status": "posted"
+    },
+    {
+      "ticker": "GD",
+      "date": "2026-07-23",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
