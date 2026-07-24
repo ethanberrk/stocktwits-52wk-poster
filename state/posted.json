@@ -803,6 +803,12 @@
       "date": "2026-07-24",
       "post_id": "659975430",
       "status": "posted"
+    },
+    {
+      "ticker": "RPRX",
+      "date": "2026-07-24",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
