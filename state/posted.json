@@ -875,6 +875,12 @@
       "date": "2026-07-27",
       "post_id": "660121192",
       "status": "posted"
+    },
+    {
+      "ticker": "PCAR",
+      "date": "2026-07-27",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
