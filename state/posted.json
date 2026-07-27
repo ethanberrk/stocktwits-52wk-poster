@@ -869,6 +869,12 @@
       "date": "2026-07-27",
       "post_id": "660117891",
       "status": "posted"
+    },
+    {
+      "ticker": "ROST",
+      "date": "2026-07-27",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
