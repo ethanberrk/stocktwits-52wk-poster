@@ -899,6 +899,12 @@
       "date": "2026-07-28",
       "post_id": "660199958",
       "status": "posted"
+    },
+    {
+      "ticker": "KO",
+      "date": "2026-07-28",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
