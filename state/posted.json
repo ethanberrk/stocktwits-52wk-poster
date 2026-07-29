@@ -1007,6 +1007,12 @@
       "date": "2026-07-29",
       "post_id": "660349189",
       "status": "posted"
+    },
+    {
+      "ticker": "AFL",
+      "date": "2026-07-29",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
