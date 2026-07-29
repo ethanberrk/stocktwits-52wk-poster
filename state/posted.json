@@ -1019,6 +1019,12 @@
       "date": "2026-07-29",
       "post_id": "660358128",
       "status": "posted"
+    },
+    {
+      "ticker": "PSA",
+      "date": "2026-07-29",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
