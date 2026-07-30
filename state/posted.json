@@ -1025,6 +1025,12 @@
       "date": "2026-07-29",
       "post_id": "660363605",
       "status": "posted"
+    },
+    {
+      "ticker": "HSBC",
+      "date": "2026-07-30",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
