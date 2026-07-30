@@ -1055,6 +1055,12 @@
       "date": "2026-07-30",
       "post_id": "660470976",
       "status": "posted"
+    },
+    {
+      "ticker": "EA",
+      "date": "2026-07-30",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
