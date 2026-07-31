@@ -1115,6 +1115,12 @@
       "date": "2026-07-31",
       "post_id": "660599315",
       "status": "posted"
+    },
+    {
+      "ticker": "VIK",
+      "date": "2026-07-31",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
