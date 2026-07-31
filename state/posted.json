@@ -1121,6 +1121,12 @@
       "date": "2026-07-31",
       "post_id": "660603836",
       "status": "posted"
+    },
+    {
+      "ticker": "BAP",
+      "date": "2026-07-31",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
