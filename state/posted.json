@@ -1139,6 +1139,12 @@
       "date": "2026-07-31",
       "post_id": "660616222",
       "status": "posted"
+    },
+    {
+      "ticker": "AMZN",
+      "date": "2026-08-03",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
