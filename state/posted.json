@@ -1175,6 +1175,12 @@
       "date": "2026-08-03",
       "post_id": "660759106",
       "status": "posted"
+    },
+    {
+      "ticker": "SAN",
+      "date": "2026-08-03",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
