@@ -1221,8 +1221,8 @@
     {
       "ticker": "JPM",
       "date": "2026-08-04",
-      "post_id": null,
-      "status": "pending"
+      "post_id": "660853169",
+      "status": "posted"
     }
   ]
 }
