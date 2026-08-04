@@ -1259,6 +1259,12 @@
       "date": "2026-08-04",
       "post_id": "660884101",
       "status": "posted"
+    },
+    {
+      "ticker": "JCI",
+      "date": "2026-08-04",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
