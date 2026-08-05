@@ -1343,6 +1343,12 @@
       "date": "2026-08-05",
       "post_id": "661029490",
       "status": "posted"
+    },
+    {
+      "ticker": "RTX",
+      "date": "2026-08-05",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
