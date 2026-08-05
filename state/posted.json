@@ -1325,6 +1325,12 @@
       "date": "2026-08-05",
       "post_id": "661017310",
       "status": "posted"
+    },
+    {
+      "ticker": "FTNT",
+      "date": "2026-08-05",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
