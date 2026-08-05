@@ -1337,6 +1337,12 @@
       "date": "2026-08-05",
       "post_id": "661025382",
       "status": "posted"
+    },
+    {
+      "ticker": "GRMN",
+      "date": "2026-08-05",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
