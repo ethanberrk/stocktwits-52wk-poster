@@ -1283,6 +1283,12 @@
       "date": "2026-08-04",
       "post_id": "660903196",
       "status": "posted"
+    },
+    {
+      "ticker": "PANW",
+      "date": "2026-08-05",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
