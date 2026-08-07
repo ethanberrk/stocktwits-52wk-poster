@@ -1385,6 +1385,12 @@
       "date": "2026-08-07",
       "post_id": "661266382",
       "status": "posted"
+    },
+    {
+      "ticker": "ANET",
+      "date": "2026-08-07",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
