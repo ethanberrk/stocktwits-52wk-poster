@@ -1379,6 +1379,12 @@
       "date": "2026-08-07",
       "post_id": "661260546",
       "status": "posted"
+    },
+    {
+      "ticker": "RTX",
+      "date": "2026-08-07",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
