@@ -1481,6 +1481,12 @@
       "date": "2026-08-10",
       "post_id": "661448354",
       "status": "posted"
+    },
+    {
+      "ticker": "FAST",
+      "date": "2026-08-10",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
