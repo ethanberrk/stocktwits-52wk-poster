@@ -1457,6 +1457,12 @@
       "date": "2026-08-10",
       "post_id": "661431910",
       "status": "posted"
+    },
+    {
+      "ticker": "VRTX",
+      "date": "2026-08-10",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
