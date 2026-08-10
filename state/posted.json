@@ -1469,6 +1469,12 @@
       "date": "2026-08-10",
       "post_id": "661440626",
       "status": "posted"
+    },
+    {
+      "ticker": "TGT",
+      "date": "2026-08-10",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
