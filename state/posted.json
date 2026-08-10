@@ -1493,6 +1493,12 @@
       "date": "2026-08-10",
       "post_id": "661455673",
       "status": "posted"
+    },
+    {
+      "ticker": "RVMD",
+      "date": "2026-08-10",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
