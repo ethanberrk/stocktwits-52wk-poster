@@ -1463,6 +1463,12 @@
       "date": "2026-08-10",
       "post_id": "661436380",
       "status": "posted"
+    },
+    {
+      "ticker": "ABNB",
+      "date": "2026-08-10",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
