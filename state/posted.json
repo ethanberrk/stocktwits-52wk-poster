@@ -1499,6 +1499,12 @@
       "date": "2026-08-10",
       "post_id": "661459026",
       "status": "posted"
+    },
+    {
+      "ticker": "NTAP",
+      "date": "2026-08-10",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
