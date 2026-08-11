@@ -1523,6 +1523,12 @@
       "date": "2026-08-11",
       "post_id": "661530823",
       "status": "posted"
+    },
+    {
+      "ticker": "ETN",
+      "date": "2026-08-11",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
