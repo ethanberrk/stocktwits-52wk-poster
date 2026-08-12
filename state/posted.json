@@ -1637,6 +1637,12 @@
       "date": "2026-08-12",
       "post_id": "661688386",
       "status": "posted"
+    },
+    {
+      "ticker": "USFD",
+      "date": "2026-08-12",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
