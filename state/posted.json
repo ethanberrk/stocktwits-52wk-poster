@@ -1673,6 +1673,12 @@
       "date": "2026-08-13",
       "post_id": "661780472",
       "status": "posted"
+    },
+    {
+      "ticker": "PANW",
+      "date": "2026-08-13",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
