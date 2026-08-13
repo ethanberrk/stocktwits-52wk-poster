@@ -1667,6 +1667,12 @@
       "date": "2026-08-13",
       "post_id": "661773384",
       "status": "posted"
+    },
+    {
+      "ticker": "DELL",
+      "date": "2026-08-13",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
