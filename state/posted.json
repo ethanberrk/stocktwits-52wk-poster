@@ -1703,6 +1703,12 @@
       "date": "2026-08-13",
       "post_id": "661806824",
       "status": "posted"
+    },
+    {
+      "ticker": "SBUX",
+      "date": "2026-08-13",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
