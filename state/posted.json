@@ -1757,6 +1757,12 @@
       "date": "2026-08-14",
       "post_id": "661918444",
       "status": "posted"
+    },
+    {
+      "ticker": "CP",
+      "date": "2026-08-14",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
