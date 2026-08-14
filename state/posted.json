@@ -1745,6 +1745,12 @@
       "date": "2026-08-14",
       "post_id": "661907602",
       "status": "posted"
+    },
+    {
+      "ticker": "VLO",
+      "date": "2026-08-14",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
