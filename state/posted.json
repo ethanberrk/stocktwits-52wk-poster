@@ -1859,6 +1859,12 @@
       "date": "2026-08-17",
       "post_id": null,
       "status": "pending"
+    },
+    {
+      "ticker": "STT",
+      "date": "2026-08-17",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
