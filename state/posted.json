@@ -1877,6 +1877,12 @@
       "date": "2026-08-18",
       "post_id": "662163516",
       "status": "posted"
+    },
+    {
+      "ticker": "SCHW",
+      "date": "2026-08-18",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
