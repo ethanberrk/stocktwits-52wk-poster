@@ -1865,6 +1865,12 @@
       "date": "2026-08-17",
       "post_id": "662103370",
       "status": "posted"
+    },
+    {
+      "ticker": "MRK",
+      "date": "2026-08-18",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
