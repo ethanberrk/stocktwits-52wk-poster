@@ -1925,6 +1925,12 @@
       "date": "2026-08-18",
       "post_id": "662199291",
       "status": "posted"
+    },
+    {
+      "ticker": "EC",
+      "date": "2026-08-18",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
