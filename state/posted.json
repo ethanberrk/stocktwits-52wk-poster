@@ -1931,6 +1931,12 @@
       "date": "2026-08-18",
       "post_id": "662203274",
       "status": "posted"
+    },
+    {
+      "ticker": "ROIV",
+      "date": "2026-08-18",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
