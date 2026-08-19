@@ -1973,6 +1973,12 @@
       "date": "2026-08-19",
       "post_id": "662301547",
       "status": "posted"
+    },
+    {
+      "ticker": "CP",
+      "date": "2026-08-19",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
