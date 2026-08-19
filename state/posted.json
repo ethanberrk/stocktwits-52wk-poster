@@ -1955,6 +1955,12 @@
       "date": "2026-08-19",
       "post_id": "662284109",
       "status": "posted"
+    },
+    {
+      "ticker": "ABNB",
+      "date": "2026-08-19",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
