@@ -1937,6 +1937,12 @@
       "date": "2026-08-18",
       "post_id": "662207267",
       "status": "posted"
+    },
+    {
+      "ticker": "LLY",
+      "date": "2026-08-19",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
