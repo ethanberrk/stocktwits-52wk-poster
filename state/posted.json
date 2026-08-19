@@ -1979,6 +1979,12 @@
       "date": "2026-08-19",
       "post_id": "662306636",
       "status": "posted"
+    },
+    {
+      "ticker": "TGT",
+      "date": "2026-08-19",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
