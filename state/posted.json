@@ -1967,6 +1967,12 @@
       "date": "2026-08-19",
       "post_id": "662296360",
       "status": "posted"
+    },
+    {
+      "ticker": "REGN",
+      "date": "2026-08-19",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
