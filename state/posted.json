@@ -1943,6 +1943,12 @@
       "date": "2026-08-19",
       "post_id": "662269378",
       "status": "posted"
+    },
+    {
+      "ticker": "JNJ",
+      "date": "2026-08-19",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
