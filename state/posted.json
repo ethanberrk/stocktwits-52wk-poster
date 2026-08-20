@@ -2063,6 +2063,12 @@
       "date": "2026-08-20",
       "post_id": "662446523",
       "status": "posted"
+    },
+    {
+      "ticker": "NTRA",
+      "date": "2026-08-20",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
