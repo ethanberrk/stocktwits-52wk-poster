@@ -2123,6 +2123,12 @@
       "date": "2026-08-21",
       "post_id": "662549359",
       "status": "posted"
+    },
+    {
+      "ticker": "TGT",
+      "date": "2026-08-21",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
