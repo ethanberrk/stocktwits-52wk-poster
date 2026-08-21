@@ -2087,6 +2087,12 @@
       "date": "2026-08-21",
       "post_id": "662514774",
       "status": "posted"
+    },
+    {
+      "ticker": "CNQ",
+      "date": "2026-08-21",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
