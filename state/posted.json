@@ -2129,6 +2129,12 @@
       "date": "2026-08-21",
       "post_id": "662553970",
       "status": "posted"
+    },
+    {
+      "ticker": "BDX",
+      "date": "2026-08-21",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
