@@ -2165,6 +2165,12 @@
       "date": "2026-08-24",
       "post_id": "662695048",
       "status": "posted"
+    },
+    {
+      "ticker": "BHP",
+      "date": "2026-08-24",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
