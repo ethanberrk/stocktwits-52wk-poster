@@ -2195,6 +2195,12 @@
       "date": "2026-08-24",
       "post_id": "662713771",
       "status": "posted"
+    },
+    {
+      "ticker": "IQV",
+      "date": "2026-08-24",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
