@@ -2237,6 +2237,12 @@
       "date": "2026-08-25",
       "post_id": "662783947",
       "status": "posted"
+    },
+    {
+      "ticker": "FCX",
+      "date": "2026-08-25",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
