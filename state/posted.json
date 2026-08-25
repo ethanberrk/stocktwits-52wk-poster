@@ -2291,6 +2291,12 @@
       "date": "2026-08-25",
       "post_id": "662820275",
       "status": "posted"
+    },
+    {
+      "ticker": "IBKR",
+      "date": "2026-08-25",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
