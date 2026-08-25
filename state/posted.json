@@ -2267,6 +2267,12 @@
       "date": "2026-08-25",
       "post_id": "662806087",
       "status": "posted"
+    },
+    {
+      "ticker": "BNS",
+      "date": "2026-08-25",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
