@@ -2357,6 +2357,12 @@
       "date": "2026-08-26",
       "post_id": "662921619",
       "status": "posted"
+    },
+    {
+      "ticker": "PAA",
+      "date": "2026-08-26",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
