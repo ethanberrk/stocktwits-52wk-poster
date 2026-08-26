@@ -2351,6 +2351,12 @@
       "date": "2026-08-26",
       "post_id": "662918231",
       "status": "posted"
+    },
+    {
+      "ticker": "NDSN",
+      "date": "2026-08-26",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
