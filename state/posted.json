@@ -2339,6 +2339,12 @@
       "date": "2026-08-26",
       "post_id": "662911745",
       "status": "posted"
+    },
+    {
+      "ticker": "EXPD",
+      "date": "2026-08-26",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
