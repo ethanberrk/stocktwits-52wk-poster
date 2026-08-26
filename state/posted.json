@@ -2321,6 +2321,12 @@
       "date": "2026-08-26",
       "post_id": "662901067",
       "status": "posted"
+    },
+    {
+      "ticker": "EXPE",
+      "date": "2026-08-26",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
