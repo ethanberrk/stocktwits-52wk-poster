@@ -2327,6 +2327,12 @@
       "date": "2026-08-26",
       "post_id": "662904764",
       "status": "posted"
+    },
+    {
+      "ticker": "SHG",
+      "date": "2026-08-26",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
