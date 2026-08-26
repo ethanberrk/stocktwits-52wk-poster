@@ -2345,6 +2345,12 @@
       "date": "2026-08-26",
       "post_id": "662914999",
       "status": "posted"
+    },
+    {
+      "ticker": "CIB",
+      "date": "2026-08-26",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
