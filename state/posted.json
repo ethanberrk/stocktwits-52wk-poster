@@ -2423,6 +2423,12 @@
       "date": "2026-08-27",
       "post_id": "663030366",
       "status": "posted"
+    },
+    {
+      "ticker": "TEVA",
+      "date": "2026-08-27",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
