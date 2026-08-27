@@ -2429,6 +2429,12 @@
       "date": "2026-08-27",
       "post_id": "663038367",
       "status": "posted"
+    },
+    {
+      "ticker": "CRWD",
+      "date": "2026-08-27",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
