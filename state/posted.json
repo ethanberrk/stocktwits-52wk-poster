@@ -2405,6 +2405,12 @@
       "date": "2026-08-27",
       "post_id": "663017804",
       "status": "posted"
+    },
+    {
+      "ticker": "WAT",
+      "date": "2026-08-27",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
