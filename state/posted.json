@@ -2369,6 +2369,12 @@
       "date": "2026-08-27",
       "post_id": "662985558",
       "status": "posted"
+    },
+    {
+      "ticker": "STT",
+      "date": "2026-08-27",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
