@@ -2471,6 +2471,12 @@
       "date": "2026-08-28",
       "post_id": "663125218",
       "status": "posted"
+    },
+    {
+      "ticker": "GEN",
+      "date": "2026-08-28",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
