@@ -2483,6 +2483,12 @@
       "date": "2026-08-28",
       "post_id": "663133218",
       "status": "posted"
+    },
+    {
+      "ticker": "DT",
+      "date": "2026-08-28",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
