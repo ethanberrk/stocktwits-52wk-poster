@@ -2531,6 +2531,12 @@
       "date": "2026-08-31",
       "post_id": "663249197",
       "status": "posted"
+    },
+    {
+      "ticker": "TEAM",
+      "date": "2026-08-31",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
