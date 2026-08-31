@@ -2519,6 +2519,12 @@
       "date": "2026-08-31",
       "post_id": "663240595",
       "status": "posted"
+    },
+    {
+      "ticker": "PSX",
+      "date": "2026-08-31",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
