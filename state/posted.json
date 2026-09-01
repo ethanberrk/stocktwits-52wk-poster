@@ -2549,6 +2549,12 @@
       "date": "2026-08-31",
       "post_id": "663265381",
       "status": "posted"
+    },
+    {
+      "ticker": "PFE",
+      "date": "2026-09-01",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
