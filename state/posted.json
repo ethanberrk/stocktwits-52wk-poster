@@ -2591,6 +2591,12 @@
       "date": "2026-09-01",
       "post_id": "663352299",
       "status": "posted"
+    },
+    {
+      "ticker": "RPRX",
+      "date": "2026-09-01",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
