@@ -2573,6 +2573,12 @@
       "date": "2026-09-01",
       "post_id": "663341130",
       "status": "posted"
+    },
+    {
+      "ticker": "DE",
+      "date": "2026-09-01",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
