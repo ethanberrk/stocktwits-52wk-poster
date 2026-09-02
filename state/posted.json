@@ -2633,6 +2633,12 @@
       "date": "2026-09-02",
       "post_id": "663433659",
       "status": "posted"
+    },
+    {
+      "ticker": "SMFG",
+      "date": "2026-09-02",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
