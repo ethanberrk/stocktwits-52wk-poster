@@ -2669,6 +2669,12 @@
       "date": "2026-09-02",
       "post_id": "663458238",
       "status": "posted"
+    },
+    {
+      "ticker": "REGN",
+      "date": "2026-09-02",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
