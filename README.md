@@ -22,6 +22,24 @@ filters + cooldown + caps (`src/select.py`) → chart-img 1-yr PNG
     CHART_IMG_API_KEY=... python run.py --force   # one tick, any time of day
     python -m pytest -m contract -v -s            # live-API contract tests
 
+## Data source switch (Xignite vs legacy scraping)
+
+`DATA_SOURCE` picks where candidates AND chart history come from:
+
+- `legacy` (default) — Yahoo screener + stockanalysis.com (scraped, unofficial)
+- `xignite` — Ethan's licensed Xignite subscription (needs `XIGNITE_TOKEN`)
+
+In CI it is the repository **variable** `DATA_SOURCE` (Settings → Secrets and
+variables → Actions → Variables). Set it to `xignite` to switch, back to
+`legacy` (or delete it) to revert — no deploy, the next tick obeys it.
+Locally: `python run.py --source xignite --force`.
+
+Every tick also runs `scripts/shadow.py`, which fetches the *other* source and
+writes `shadow/<date>/<HHMM>.json` (overlap, names only one feed saw, and what
+each feed would have picked). `python scripts/shadow_report.py [date]` prints a
+day's agreement. Repository variable `SHADOW=off` disables it. Design:
+`docs/superpowers/specs/2026-09-03-xignite-data-source-design.md`.
+
 ## Ops
 
 - Cron: `.github/workflows/tick.yml`, every 30 min during market hours.

@@ -29,6 +29,13 @@ jobs:
       - name: Run tick
         env:
           STOCKTWITS_ACCESS_TOKEN: ${{ secrets.STOCKTWITS_ACCESS_TOKEN }}
+          # Data-source switch (repository VARIABLE, Settings > Secrets and
+          # variables > Actions > Variables). `legacy` = scraped Yahoo/
+          # stockanalysis feeds; `xignite` = licensed Xignite feed. Flip it
+          # there to go live or to revert — no code change, next tick picks
+          # it up. Unset = legacy.
+          DATA_SOURCE: ${{ vars.DATA_SOURCE || 'legacy' }}
+          XIGNITE_TOKEN: ${{ secrets.XIGNITE_TOKEN }}
           # Launch ramp: 1 post/tick (a gentle 30-min trickle that dodges the
           # duplicate filter), 12/day for broader coverage. Revert (remove these
           # two) once posting looks healthy — defaults are 2/20.
@@ -36,6 +43,17 @@ jobs:
           MAX_PER_DAY: "12"
           PYTHONUNBUFFERED: "1"
         run: python run.py --sync-state --live
+      - name: Shadow compare (other data source, never posts)
+        # Runs the source that is NOT active and diffs it against what the
+        # tick saw; writes shadow/<date>/<HHMM>.json. Read with
+        # scripts/shadow_report.py. Set repository variable SHADOW=off to stop.
+        if: always() && vars.SHADOW != 'off'
+        continue-on-error: true
+        env:
+          DATA_SOURCE: ${{ vars.DATA_SOURCE || 'legacy' }}
+          XIGNITE_TOKEN: ${{ secrets.XIGNITE_TOKEN }}
+          PYTHONUNBUFFERED: "1"
+        run: python scripts/shadow.py
       - name: Commit state + output
         # always(): if the tick crashed mid-posting, the pending/confirmed
         # state on disk must still be persisted so nothing double-posts
@@ -43,7 +61,7 @@ jobs:
         run: |
           git config user.name "52wk-poster-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add state output
+          git add state output shadow
           if git diff --cached --quiet; then
             echo "nothing posted this tick"; exit 0
           fi

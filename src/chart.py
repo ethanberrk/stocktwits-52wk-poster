@@ -1,6 +1,7 @@
 """Self-rendered 1-year daily candlestick chart (matplotlib -> PNG bytes).
 
-Replaces the chart-img API: history comes keyless from stockanalysis.com and
+Replaces the chart-img API: history comes from stockanalysis.com (legacy) or
+Xignite (DATA_SOURCE=xignite) and
 the chart is drawn in-process in the TradingView light style (up #089981,
 down #F23645, recessive grid, right-hand price axis, last-price pill). The
 daily history endpoint lags one session, so today's candle is appended from
@@ -18,6 +19,7 @@ from matplotlib import pyplot as plt
 from matplotlib.patches import Rectangle
 
 import config
+from src import xignite
 from src.fetch import get_json
 from src.source.base import Candidate
 from src.stocktwits import st_symbol
@@ -32,32 +34,60 @@ class ChartError(Exception):
     """Chart data/render failed for this ticker; skip it this tick (stays eligible)."""
 
 
-def _fetch_history(ticker: str, today: date | None = None) -> list[list]:
-    """[[YYYY-MM-DD, o, h, l, c], ...] ascending, ending with today's candle."""
-    if today is None:
-        today = datetime.now(ZoneInfo(config.MARKET_TZ)).date()
+def _stockanalysis_history(ticker: str, today: date):
+    """Legacy (scraped) history: 1Y daily candles from stockanalysis.com plus
+    a lazy today's-candle from its live quote."""
     sa_symbol = st_symbol(ticker)
     d = get_json(config.SA_HISTORY_URL.format(ticker=sa_symbol))
     rows = (d or {}).get("data") or []
     hist = sorted(([r["t"], r["o"], r["h"], r["l"], r["c"]] for r in rows),
                   key=lambda r: r[0])
+
+    def live():
+        q = (get_json(config.SA_QUOTE_URL.format(ticker=sa_symbol)) or {}).get("data")
+        if q and q.get("p") and q.get("o"):
+            p = float(q["p"])
+            return [today.isoformat(), float(q["o"]), float(q.get("h") or p),
+                    float(q.get("l") or p), p]
+        return None
+    return hist, live
+
+
+def _xignite_history(ticker: str, today: date):
+    """Licensed history: GlobalHistorical daily candles (split-adjusted) plus
+    a lazy today's-candle from the delayed GlobalQuotes quote."""
+    hist = xignite.history(ticker, today)
+
+    def live():
+        q = xignite.quotes([ticker]).get(ticker) or {}
+        return xignite.today_candle(q, today)
+    return hist, live
+
+
+def _fetch_history(ticker: str, today: date | None = None) -> list[list]:
+    """[[YYYY-MM-DD, o, h, l, c], ...] ascending, ending with today's candle.
+    Which feed supplies it follows config.DATA_SOURCE, same as the candidate
+    source — the switch flips charts and picks together."""
+    if today is None:
+        today = datetime.now(ZoneInfo(config.MARKET_TZ)).date()
+    if config.DATA_SOURCE == "xignite":
+        hist, live = _xignite_history(ticker, today)
+    else:
+        hist, live = _stockanalysis_history(ticker, today)
     if not hist:
-        raise ChartError(f"{ticker}: no daily history from stockanalysis")
+        raise ChartError(f"{ticker}: no daily history from {config.DATA_SOURCE} source")
     cutoff = (today - timedelta(days=config.MIN_HISTORY_DAYS)).isoformat()
     if hist[0][0] > cutoff:
         raise ChartError(
             f"{ticker}: history starts {hist[0][0]}, needs to reach back to "
             f"{cutoff} — likely a recent IPO, 1Y chart would mislead")
     if hist[-1][0] < today.isoformat():
-        q = (get_json(config.SA_QUOTE_URL.format(ticker=sa_symbol)) or {}).get("data")
-        if q and q.get("p") and q.get("o"):
-            p = float(q["p"])
-            hist.append([today.isoformat(), float(q["o"]),
-                         float(q.get("h") or p), float(q.get("l") or p), p])
-        else:
+        candle = live()
+        if candle is None:
             raise ChartError(
                 f"{ticker}: history ends {hist[-1][0]}, live quote unusable "
                 f"— chart would miss today's move")
+        hist.append(candle)
     return hist
 
 
