@@ -132,3 +132,32 @@ def test_publish_error_skips_ticker_and_continues(tmp_path):
     assert got == ["MID"]
     status = {e["ticker"]: e["status"] for e in state.load_posted(sp)}
     assert status == {"BIG": "pending", "MID": "posted"}
+
+
+# --- data-source switch + shadow dump ----------------------------------------
+
+def test_build_source_follows_switch(monkeypatch):
+    import config
+    from src.source.xignite_source import XigniteSource
+    from src.source.yfinance_source import YFinanceSource
+    monkeypatch.setattr(config, "DATA_SOURCE", "legacy")
+    assert isinstance(run.build_source(), YFinanceSource)
+    monkeypatch.setattr(config, "DATA_SOURCE", "xignite")
+    assert isinstance(run.build_source(), XigniteSource)
+    assert isinstance(run.build_source("legacy"), YFinanceSource)
+
+
+def test_build_source_unknown_is_hard_error(monkeypatch):
+    with pytest.raises(SystemExit):
+        run.build_source("yahoo-please")
+
+
+def test_tick_dumps_candidates_for_shadow(tmp_path):
+    import json
+    dump = tmp_path / "shadow" / "2026-07-01" / "1400.active.json"
+    run.tick(FakeSource([cand("BIG", 9e9), cand("SM", 2e9)]), SpyPublisher(),
+             lambda c: b"PNG", tmp_path / "p.json", NOW, dump_to=dump)
+    d = json.loads(dump.read_text())
+    assert [c["ticker"] for c in d["candidates"]] == ["BIG", "SM"]
+    assert d["candidates"][0]["market_cap"] == 9e9
+    assert d["time"].startswith("2026-07-01T14:00")

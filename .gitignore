@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 .venv/
 .pytest_cache/
+
+# raw per-tick candidate dumps; scripts/shadow.py replaces them with the diff
+shadow/**/*.active.json

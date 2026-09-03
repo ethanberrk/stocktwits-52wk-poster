@@ -166,3 +166,55 @@ def test_legend_text_change_is_vs_previous_close():
 def test_legend_text_single_candle_uses_open():
     text = chart._legend_text([["2026-07-09", 20.0, 30.0, 20.0, 25.0]])
     assert "+5.00 (+25.00%)" in text
+
+
+# --- DATA_SOURCE=xignite path -------------------------------------------------
+
+def _xig_hist():
+    return [["2025-07-10", 20.0, 20.5, 19.8, 20.2],
+            ["2026-07-08", 37.0, 37.5, 35.1, 37.47]]
+
+
+def test_xignite_history_appends_todays_candle_from_quote(monkeypatch):
+    import config
+    from src import xignite
+    monkeypatch.setattr(config, "DATA_SOURCE", "xignite")
+    monkeypatch.setattr(xignite, "history", lambda t, today: _xig_hist())
+    monkeypatch.setattr(xignite, "quotes", lambda tks: {"TXG": {
+        "Date": "7/9/2026", "Open": 38.33, "High": 42.67, "Low": 38.26, "Last": 42.39}})
+    monkeypatch.setattr(chart, "get_json", lambda *a, **k: pytest.fail("scraped"))
+    rows = chart._fetch_history("TXG", today=date(2026, 7, 9))
+    assert rows[-1] == ["2026-07-09", 38.33, 42.67, 38.26, 42.39]
+    assert rows[0][0] == "2025-07-10"
+
+
+def test_xignite_stale_quote_is_chart_error(monkeypatch):
+    import config
+    from src import xignite
+    monkeypatch.setattr(config, "DATA_SOURCE", "xignite")
+    monkeypatch.setattr(xignite, "history", lambda t, today: _xig_hist())
+    monkeypatch.setattr(xignite, "quotes", lambda tks: {"TXG": {"Date": "7/8/2026", "Open": 1, "Last": 1}})
+    with pytest.raises(chart.ChartError, match="live quote unusable"):
+        chart._fetch_history("TXG", today=date(2026, 7, 9))
+
+
+def test_xignite_recent_ipo_is_chart_error(monkeypatch):
+    import config
+    from src import xignite
+    monkeypatch.setattr(config, "DATA_SOURCE", "xignite")
+    monkeypatch.setattr(xignite, "history", lambda t, today: [["2026-05-01", 1, 1, 1, 1]])
+    with pytest.raises(chart.ChartError, match="recent IPO"):
+        chart._fetch_history("NEW", today=date(2026, 7, 9))
+
+
+def test_xignite_feed_failure_surfaces_as_chart_error(monkeypatch):
+    import config
+    from src import xignite
+    from src.source.base import SourceError
+    monkeypatch.setattr(config, "DATA_SOURCE", "xignite")
+
+    def boom(t, today):
+        raise SourceError("token expired")
+    monkeypatch.setattr(xignite, "history", boom)
+    with pytest.raises(chart.ChartError, match="token expired"):
+        chart.fetch_chart_png(_c("TXG"))
