@@ -1,0 +1,60 @@
+{
+ "time": "2026-09-03T19:31:18+00:00",
+ "active": "legacy",
+ "shadow": "xignite",
+ "counts": {
+  "active": 52,
+  "shadow": 85,
+  "both": 51
+ },
+ "only_in_active": [
+  "BNS"
+ ],
+ "only_in_shadow": [
+  "ASIC",
+  "ATRC",
+  "ATTO",
+  "CLMT",
+  "CMBT",
+  "DAC",
+  "ECO",
+  "FIVN",
+  "FRNM",
+  "GNW",
+  "GSL",
+  "HRMY",
+  "IDT",
+  "INSW",
+  "IOND",
+  "LCLN",
+  "LPG",
+  "NAT",
+  "OPK",
+  "OPY",
+  "PAYO",
+  "PLSE",
+  "RDVT",
+  "RELY",
+  "RNG",
+  "SBLK",
+  "SENEA",
+  "SENEB",
+  "SLDE",
+  "TVTX",
+  "UFCS",
+  "VEON",
+  "WT",
+  "ZYME"
+ ],
+ "would_pick": {
+  "legacy": [
+   "MT",
+   "TEAM"
+  ],
+  "xignite": [
+   "MT",
+   "TEAM"
+  ]
+ },
+ "picks_agree": true
+}
