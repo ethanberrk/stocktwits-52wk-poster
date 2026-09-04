@@ -1,0 +1,50 @@
+{
+ "time": "2026-09-04T17:01:27+00:00",
+ "active": "legacy",
+ "shadow": "xignite",
+ "counts": {
+  "active": 16,
+  "shadow": 42,
+  "both": 16
+ },
+ "only_in_active": [],
+ "only_in_shadow": [
+  "ASIC",
+  "ATTO",
+  "CMBT",
+  "CPAC",
+  "CVI",
+  "DHT",
+  "DRTS",
+  "ECO",
+  "FRNM",
+  "FTH",
+  "GNK",
+  "GSL",
+  "INSW",
+  "ITGR",
+  "LCLN",
+  "LPG",
+  "MRX",
+  "NAT",
+  "NSIT",
+  "ODTX",
+  "PAYO",
+  "SBLK",
+  "TK",
+  "TRMD",
+  "TX",
+  "VEON"
+ ],
+ "would_pick": {
+  "legacy": [
+   "CNH",
+   "CRBG"
+  ],
+  "xignite": [
+   "CNH",
+   "CRBG"
+  ]
+ },
+ "picks_agree": true
+}
