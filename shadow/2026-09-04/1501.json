@@ -1,0 +1,46 @@
+{
+ "time": "2026-09-04T15:01:37+00:00",
+ "active": "legacy",
+ "shadow": "xignite",
+ "counts": {
+  "active": 13,
+  "shadow": 35,
+  "both": 13
+ },
+ "only_in_active": [],
+ "only_in_shadow": [
+  "ATTO",
+  "CMBT",
+  "CPAC",
+  "CVI",
+  "DHT",
+  "ECO",
+  "FRNM",
+  "GNK",
+  "GSL",
+  "INSW",
+  "ITGR",
+  "LCLN",
+  "LPG",
+  "MRX",
+  "NAT",
+  "NSIT",
+  "PAYO",
+  "SBLK",
+  "TK",
+  "TRMD",
+  "TX",
+  "VEON"
+ ],
+ "would_pick": {
+  "legacy": [
+   "VOD",
+   "RPRX"
+  ],
+  "xignite": [
+   "VOD",
+   "NMR"
+  ]
+ },
+ "picks_agree": false
+}
