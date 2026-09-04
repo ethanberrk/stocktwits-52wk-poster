@@ -2819,6 +2819,12 @@
       "date": "2026-09-04",
       "post_id": "663671017",
       "status": "posted"
+    },
+    {
+      "ticker": "UNM",
+      "date": "2026-09-04",
+      "post_id": null,
+      "status": "pending"
     }
   ]
 }
