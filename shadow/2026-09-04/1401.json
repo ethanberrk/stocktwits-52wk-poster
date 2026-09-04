@@ -1,0 +1,39 @@
+{
+ "time": "2026-09-04T14:01:27+00:00",
+ "active": "legacy",
+ "shadow": "xignite",
+ "counts": {
+  "active": 13,
+  "shadow": 28,
+  "both": 13
+ },
+ "only_in_active": [],
+ "only_in_shadow": [
+  "CMBT",
+  "DHT",
+  "ECO",
+  "GNK",
+  "GSL",
+  "INSW",
+  "ITGR",
+  "LPG",
+  "MRX",
+  "NAT",
+  "PAYO",
+  "SBLK",
+  "TK",
+  "TX",
+  "VEON"
+ ],
+ "would_pick": {
+  "legacy": [
+   "MT",
+   "IQV"
+  ],
+  "xignite": [
+   "MT",
+   "IQV"
+  ]
+ },
+ "picks_agree": true
+}
