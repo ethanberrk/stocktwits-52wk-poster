@@ -1,0 +1,42 @@
+{
+ "time": "2026-09-04T14:31:21+00:00",
+ "active": "legacy",
+ "shadow": "xignite",
+ "counts": {
+  "active": 14,
+  "shadow": 32,
+  "both": 14
+ },
+ "only_in_active": [],
+ "only_in_shadow": [
+  "ATTO",
+  "CMBT",
+  "CPAC",
+  "DHT",
+  "ECO",
+  "FRNM",
+  "GNK",
+  "GSL",
+  "INSW",
+  "ITGR",
+  "LPG",
+  "MRX",
+  "NAT",
+  "PAYO",
+  "SBLK",
+  "TK",
+  "TRMD",
+  "VEON"
+ ],
+ "would_pick": {
+  "legacy": [
+   "IQV",
+   "VOD"
+  ],
+  "xignite": [
+   "IQV",
+   "VOD"
+  ]
+ },
+ "picks_agree": true
+}
